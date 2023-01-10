@@ -18,4 +18,28 @@ const Home = () => {
   );
 };
 
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
+}
+
+export async function getServerSideProps({ req }: GetServerSideProps) {
+  const { token } = req.cookies;
+  if (token) {
+    return {
+      redirect: {
+        destination: '/join',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
+
 export default Home;

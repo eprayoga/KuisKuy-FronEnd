@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Poppins', sans-serif;
+        color: #0C145A;
+        overflow-x: hidden;
     }
 `;
 

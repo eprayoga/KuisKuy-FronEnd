@@ -10,7 +10,6 @@ export const JoinHeroContainer = styled.div`
 export const JoinHeroContent = styled.div`
   width: 100%;
   height: 100%;
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,6 +54,7 @@ export const ButtonJoin = styled.div`
   border-radius: 15px;
   cursor: pointer;
   font-size: 20px;
+  font-weight: 700;
 `;
 
 export const Wave = styled.img`

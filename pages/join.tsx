@@ -5,7 +5,7 @@ import QuizList from '../components/organism/QuizList';
 const join = () => {
   return (
     <>
-      <NavbarJoin />
+      <NavbarJoin active="home" />
       <JoinHero />
       <QuizList />
     </>

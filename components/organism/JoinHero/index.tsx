@@ -14,7 +14,7 @@ const JoinHero = () => {
       <JoinHeroContent>
         <Title>Gabung kuis dengan kode</Title>
         <CodeInputContainer>
-          <InputCode type="text" />
+          <InputCode type="text" placeholder="Masukkan kode kuis" />
           <ButtonJoin>Gabung</ButtonJoin>
         </CodeInputContainer>
       </JoinHeroContent>

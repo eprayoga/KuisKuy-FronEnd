@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const JumbotronContainer = styled.section`
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 80px);
   padding: 0 120px;
-  padding-top: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;

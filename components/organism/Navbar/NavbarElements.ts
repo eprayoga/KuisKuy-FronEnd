@@ -8,7 +8,7 @@ export const NavbarContainer = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 15px 60px;
-  position: fixed;
+  position: sticky;
   background-color: #fff;
   top: 0;
   z-index: 9;
@@ -119,8 +119,87 @@ export const FormInput = styled.input`
   border-radius: 10px;
   padding: 10px 15px;
   font-size: 18px;
+  padding-right: 50px;
 
   ::placeholder {
     color: #6d67e4;
+  }
+`;
+
+export const QuizNavbarContainer = styled.nav`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const BackButton = styled.div`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #545454;
+  cursor: pointer;
+
+  i {
+    font-size: 32px;
+  }
+`;
+
+export const Name = styled.div`
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+`;
+
+export const ProfileImage = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  overflow: hidden;
+`;
+
+interface UserContainerTypes {
+  home?: boolean;
+  dropdown: boolean;
+}
+export const UserContainer = styled.div<UserContainerTypes>`
+  padding: 5px;
+  padding-left: 17px;
+  display: flex;
+  border: 3px solid ${(props) => (props.home ? '#6d67e4' : '#fff')};
+  border-radius: 20px;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+
+  ${Name} {
+    color: ${(props) => (props.home ? '#6d67e4' : 'fff')};
+  }
+
+  .logout-btn {
+    left: ${(props) => (props.dropdown ? '0px' : '150%')};
+    font-weight: 700;
+    width: 100%;
+    padding: 8px 30px;
+    background-color: #fff;
+    position: absolute;
+    top: 50px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-size: 16px;
+    border: 1px solid #f5f5f5;
+    transition: ease all 0.3s;
+    color: #000;
+    z-index: 9;
+  }
+
+  .logout-btn:hover {
+    background-color: #6d67e4;
+    color: #fff;
   }
 `;

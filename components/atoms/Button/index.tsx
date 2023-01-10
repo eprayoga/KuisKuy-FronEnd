@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonContainer from './ButtonElements';
+import ButtonContainer, { QuizButtonContainer } from './ButtonElements';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -13,6 +13,21 @@ const Button = (props: ButtonProps) => {
     <ButtonContainer onClick={onClick} buttonOutline={buttonOutline}>
       {children}
     </ButtonContainer>
+  );
+};
+
+interface QuizButtonProps {
+  color?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}
+export const QuizButton = (props: QuizButtonProps) => {
+  const { color, onClick, children } = props;
+
+  return (
+    <QuizButtonContainer onClick={onClick} color={color}>
+      {children}
+    </QuizButtonContainer>
   );
 };
 

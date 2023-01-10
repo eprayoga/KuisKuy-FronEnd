@@ -18,7 +18,7 @@ const Jumbotron = () => {
         <JumbotronDesc>
           Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy.
         </JumbotronDesc>
-        <Link href="/">
+        <Link href="/daftar">
           <a>
             <JumbotronButton>Daftar Gratis</JumbotronButton>
           </a>
