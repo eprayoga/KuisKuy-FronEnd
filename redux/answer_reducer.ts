@@ -1,14 +1,15 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: any = {
   user: '',
   quiz: '',
-  answer: [],
+  answers: [],
   points: [],
   total_points: 0,
 };
 
-export const quizReducer = createSlice({
+export const answerReducer = createSlice({
   name: 'answer',
   initialState,
   reducers: {
@@ -17,9 +18,15 @@ export const quizReducer = createSlice({
       state.user = userId;
       state.quiz = quizId;
     },
+    nextAnswer: (state, action: PayloadAction<any>) => {
+      const { answer, point } = action.payload;
+      state.answers.push(answer);
+      state.points.push(point);
+      state.total_points += point;
+    },
   },
 });
 
-export const { startQuizAction } = quizReducer.actions;
+export const { setIdentity, nextAnswer } = answerReducer.actions;
 
-export default quizReducer.reducer;
+export default answerReducer.reducer;
