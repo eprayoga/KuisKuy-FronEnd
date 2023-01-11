@@ -21,13 +21,7 @@ interface kuisDetailProps {
 const kuis = (props: kuisDetailProps) => {
   const { data } = props;
   const [quizData, setQuizData] = useState({
-    _id: '',
     description: '',
-    kuisName: '',
-    banner: '',
-    user: {
-      name: '',
-    },
   });
 
   useEffect(() => {
@@ -38,12 +32,7 @@ const kuis = (props: kuisDetailProps) => {
     <QuizLayout>
       <QuizDescriptionSection>
         <MateriSection description={quizData.description} />
-        <QuizDescSection
-          name={quizData.kuisName}
-          by={quizData.user.name}
-          banner={quizData.banner}
-          key={quizData._id}
-        />
+        <QuizDescSection data={data.quiz} />
       </QuizDescriptionSection>
     </QuizLayout>
   );

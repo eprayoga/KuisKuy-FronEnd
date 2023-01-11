@@ -2,7 +2,9 @@ import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import quizImage from '../../../public/assets/img/word.jpg';
+import { startQuizAction } from '../../../redux/quiz_reducer';
 import { QuizButton } from '../../atoms/Button';
 import {
   Detail,
@@ -16,14 +18,27 @@ import {
 } from './QuizDescSectionElements';
 
 interface QuizDescSectionProps {
-  name: string;
-  by: string;
-  banner: string;
+  data: any;
 }
 const QuizDescSection = (props: QuizDescSectionProps) => {
-  const { name, by, banner } = props;
+  const { data } = props;
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
+
+  const [quizData, setQuizData] = useState({
+    _id: '',
+    description: '',
+    banner: '',
+    kuisName: '',
+    user: {
+      name: '',
+    },
+  });
+
+  useEffect(() => {
+    setQuizData(data);
+  }, [data]);
 
   useEffect(() => {
     const token = Cookies.get('token');
@@ -33,11 +48,12 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
   }, []);
 
   const handleQuizPlay = () => {
-    router.push('/kuis/12/play');
+    router.push(`/kuis/${quizData._id}/play`);
+    dispatch(startQuizAction({ quizDataState: data, trace: 0 }));
   };
 
   const IMG = process.env.NEXT_PUBLIC_IMG;
-  const bannerImg = `${IMG}/${banner}`;
+  const bannerImg = `${IMG}/${quizData.banner}`;
 
   return (
     <QuizDescContainer>
@@ -47,13 +63,13 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
             <Image src={bannerImg} width={80} height={80} objectFit="cover" />
           </QuizImage>
           <Detail>
-            <Name>{name}</Name>
+            <Name>{quizData.kuisName}</Name>
             <Other>20 Soal</Other>
           </Detail>
         </QuizDetail>
         <QuizBy>
           <span>oleh : </span>
-          {by}
+          {quizData.user.name}
         </QuizBy>
       </QuizDescCard>
       {isLogin ? (

@@ -28,3 +28,17 @@ export interface CategoryTypes {
   name: string;
   __v: number;
 }
+
+export interface QuizDataTypes {
+  _id: string;
+  kuisName: string;
+  reference?: string;
+  reference_link: string;
+  description: string;
+  banner: string;
+  user: UserTypes;
+  category: CategoryTypes;
+  type: string;
+  isActive: boolean;
+  question: any;
+}

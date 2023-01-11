@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 import {
   AnswerItem,
   AnswerSection,
@@ -11,19 +13,17 @@ import {
 } from './PlayQuizSectionElements';
 
 const PlayQuizSection = () => {
+  const { quizData, trace } = useSelector((state: RootState) => state.quizData);
+
   return (
     <PlayQuizSectionContainer>
       <MainQuizSection>
-        <QuestionSection>
-          Jaringan telekomunikasi yang memungkinkan antar komputer untuk saling
-          berkomunikasi dengan bertukar data. Adalah Pengertian dari ?
-        </QuestionSection>
+        <QuestionSection>{quizData?.questions[trace].question}</QuestionSection>
         <TimeBar max={100} value={40} />
         <AnswerSection>
-          <AnswerItem>Jaringan Komputer</AnswerItem>
-          <AnswerItem>Teknik Informatika</AnswerItem>
-          <AnswerItem>Bahasa Pemrograman</AnswerItem>
-          <AnswerItem>Bahasa Inggris</AnswerItem>
+          {quizData?.questions[trace].options.map((option: any) => (
+            <AnswerItem key={option.id}>{option.option}</AnswerItem>
+          ))}
         </AnswerSection>
       </MainQuizSection>
       <SecondaryQuizSection>
