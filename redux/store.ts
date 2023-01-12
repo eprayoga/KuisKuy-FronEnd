@@ -5,10 +5,12 @@ import {
 } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import answerReducer from './answer_reducer';
 import quizReducer from './quiz_reducer';
 
 const rootReducer = combineReducers({
   quizData: quizReducer,
+  answer: answerReducer,
 });
 
 const persistConfig = {

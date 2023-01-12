@@ -6,7 +6,7 @@ const initialState: any = {
   quiz: '',
   answers: [],
   points: [],
-  total_points: 0,
+  totalPoints: 0,
 };
 
 export const answerReducer = createSlice({
@@ -17,12 +17,15 @@ export const answerReducer = createSlice({
       const { userId, quizId } = action.payload;
       state.user = userId;
       state.quiz = quizId;
+      state.totalPoints = 0;
+      state.answers = [];
+      state.points = [];
     },
     nextAnswer: (state, action: PayloadAction<any>) => {
       const { answer, point } = action.payload;
       state.answers.push(answer);
       state.points.push(point);
-      state.total_points += point;
+      state.totalPoints += point;
     },
   },
 });

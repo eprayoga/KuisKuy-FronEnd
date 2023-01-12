@@ -42,6 +42,7 @@
     "no-confusing-arrow": "off",
     "react/require-default-props": "off",
     "react/no-unescaped-entities": "off",
+    "comma-dangle": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

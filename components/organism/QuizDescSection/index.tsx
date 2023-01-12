@@ -1,10 +1,14 @@
 import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 import quizImage from '../../../public/assets/img/word.jpg';
+import { setIdentity } from '../../../redux/answer_reducer';
 import { startQuizAction } from '../../../redux/quiz_reducer';
+import { JWTPayloadTypes, UserTypes } from '../../../services/data-types';
 import { QuizButton } from '../../atoms/Button';
 import {
   Detail,
@@ -25,6 +29,20 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const dispatch = useDispatch();
+
+  const [user, setUser] = useState({
+    id: '',
+  });
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      const jwtToken = atob(token);
+      const payload: JWTPayloadTypes = jwtDecode(jwtToken);
+      const userFromPayload: UserTypes = payload.user;
+      user.id = userFromPayload.id;
+      setUser(user);
+    }
+  }, []);
 
   const [quizData, setQuizData] = useState({
     _id: '',
@@ -48,8 +66,37 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
   }, []);
 
   const handleQuizPlay = () => {
-    router.push(`/kuis/${quizData._id}/play`);
-    dispatch(startQuizAction({ quizDataState: data, trace: 0 }));
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success mx-1',
+        cancelButton: 'btn btn-danger mx-1',
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        background: '#000',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          );
+        }
+      });
+    // router.push(`/kuis/${quizData._id}/play`);
+    // dispatch(startQuizAction({ quizDataState: data, trace: 0 }));
+    // dispatch(setIdentity({ userId: user.id, quizId: data._id }));
   };
 
   const IMG = process.env.NEXT_PUBLIC_IMG;

@@ -202,7 +202,7 @@ export const QuizNavbar = () => {
           dropdown={dropdown}
           onClick={() => setDropdown(!dropdown)}
         >
-          <Name>Abdurohim</Name>
+          <Name>{user.name}</Name>
           <ProfileImage>
             <Image
               src={user.profile_photo}

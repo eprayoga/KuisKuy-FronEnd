@@ -55,6 +55,18 @@ export const AnswerItem = styled.div`
   &:hover {
     border: 3px solid #fff;
   }
+
+  &.correct {
+    background-color: #019267;
+  }
+
+  &.actual-answer {
+    border: 3px solid #019267;
+  }
+
+  &.wrong {
+    border: 3px solid #ff0000;
+  }
 `;
 
 export const SecondaryQuizSection = styled.div`

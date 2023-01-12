@@ -17,9 +17,15 @@ export const quizReducer = createSlice({
         trace,
       };
     },
+    nextAction: (state) => {
+      return {
+        ...state,
+        trace: state.trace + 1,
+      };
+    },
   },
 });
 
-export const { startQuizAction } = quizReducer.actions;
+export const { startQuizAction, nextAction } = quizReducer.actions;
 
 export default quizReducer.reducer;
