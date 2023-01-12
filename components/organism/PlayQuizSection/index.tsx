@@ -1,6 +1,12 @@
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nextAnswer } from '../../../redux/answer_reducer';
+import Swal from 'sweetalert2';
+import {
+  isCorrect,
+  nextAnswer,
+  storeResult,
+} from '../../../redux/answer_reducer';
 import { nextAction } from '../../../redux/quiz_reducer';
 import { RootState } from '../../../redux/store';
 import {
@@ -17,7 +23,7 @@ import {
 
 const PlayQuizSection = () => {
   const { quizData, trace } = useSelector((state: RootState) => state.quizData);
-  const { totalPoints } = useSelector((state: RootState) => state.answer);
+  const { totalPoints, quiz } = useSelector((state: RootState) => state.answer);
   const [pointTotal, setPoinTotal] = useState();
   const [onAnswer, setOnAnswer] = useState(false);
   const [question, setQuestion] = useState({
@@ -25,6 +31,8 @@ const PlayQuizSection = () => {
     options: [],
     answer: -1,
   });
+
+  const router = useRouter();
 
   // eslint-disable-next-line no-promise-executor-return
   const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -44,24 +52,136 @@ const PlayQuizSection = () => {
     const divAnswer = document.querySelectorAll('#answerItem');
     divAnswer[question.answer].classList.add('actual-answer');
 
-    let point = 0;
-    if (answerId === question.answer) {
-      point = 100;
-      // console.log('Tambahan point : ', point);
-      divAnswer[answerId].classList.add('correct');
+    if (trace >= quizData.questions.length - 1) {
+      let point = 0;
+      if (answerId === question.answer) {
+        point = 100;
+        divAnswer[answerId].classList.add('correct');
+        dispatch(isCorrect());
+
+        await sleep(1500);
+
+        Swal.fire({
+          icon: 'success',
+          color: '#fff',
+          background: '#2B2B2B',
+          title: 'Yeayy!',
+          html: 'Jawabanmu benar, Ini adalah soal terakhir ...',
+          timer: 2000,
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          showCancelButton: false,
+          showConfirmButton: false,
+          timerProgressBar: true,
+        }).then((result2) => {
+          if (result2.dismiss === Swal.DismissReason.timer) {
+            dispatch(nextAnswer({ answer: answerId, point }));
+
+            divAnswer[answerId].classList.remove('correct');
+            divAnswer[answerId].classList.remove('wrong');
+            divAnswer[question.answer].classList.remove('actual-answer');
+            setOnAnswer(false);
+
+            onSubmit();
+          }
+        });
+      } else {
+        divAnswer[answerId].classList.add('wrong');
+
+        await sleep(1500);
+
+        Swal.fire({
+          icon: 'error',
+          color: '#fff',
+          background: '#2B2B2B',
+          title: 'Yahh, Jawabnmu Salah',
+          html: 'Ini adalah soal terakhir ...',
+          timer: 2000,
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          showCancelButton: false,
+          showConfirmButton: false,
+          timerProgressBar: true,
+        }).then((result2) => {
+          if (result2.dismiss === Swal.DismissReason.timer) {
+            dispatch(nextAnswer({ answer: answerId, point }));
+
+            divAnswer[answerId].classList.remove('correct');
+            divAnswer[answerId].classList.remove('wrong');
+            divAnswer[question.answer].classList.remove('actual-answer');
+            setOnAnswer(false);
+
+            onSubmit();
+          }
+        });
+      }
     } else {
-      divAnswer[answerId].classList.add('wrong');
+      let point = 0;
+      if (answerId === question.answer) {
+        point = 100;
+        divAnswer[answerId].classList.add('correct');
+        dispatch(isCorrect());
+
+        await sleep(1500);
+
+        Swal.fire({
+          icon: 'success',
+          color: '#fff',
+          background: '#2B2B2B',
+          title: 'Yeayy!',
+          html: 'Jawabanmu benar, bersiaplah ke pertanyaan berikutnya ...',
+          timer: 2000,
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          showCancelButton: false,
+          showConfirmButton: false,
+          timerProgressBar: true,
+        }).then((result2) => {
+          if (result2.dismiss === Swal.DismissReason.timer) {
+            dispatch(nextAnswer({ answer: answerId, point }));
+            dispatch(nextAction());
+
+            divAnswer[answerId].classList.remove('correct');
+            divAnswer[answerId].classList.remove('wrong');
+            divAnswer[question.answer].classList.remove('actual-answer');
+            setOnAnswer(false);
+          }
+        });
+      } else {
+        divAnswer[answerId].classList.add('wrong');
+
+        await sleep(1500);
+
+        Swal.fire({
+          icon: 'error',
+          color: '#fff',
+          background: '#2B2B2B',
+          title: 'Yahh, Jawabnmu Salah',
+          html: 'Yuk semangat, perbaiki disoal berikutnya ...',
+          timer: 2000,
+          allowEscapeKey: false,
+          allowOutsideClick: false,
+          showCancelButton: false,
+          showConfirmButton: false,
+          timerProgressBar: true,
+        }).then((result2) => {
+          if (result2.dismiss === Swal.DismissReason.timer) {
+            dispatch(nextAnswer({ answer: answerId, point }));
+            dispatch(nextAction());
+
+            divAnswer[answerId].classList.remove('correct');
+            divAnswer[answerId].classList.remove('wrong');
+            divAnswer[question.answer].classList.remove('actual-answer');
+            setOnAnswer(false);
+          }
+        });
+      }
     }
+  };
 
-    await sleep(1500);
-
-    dispatch(nextAnswer({ answer: answerId, point }));
-    dispatch(nextAction());
-
-    divAnswer[answerId].classList.remove('correct');
-    divAnswer[answerId].classList.remove('wrong');
-    divAnswer[question.answer].classList.remove('actual-answer');
-    setOnAnswer(false);
+  const onSubmit = () => {
+    dispatch(storeResult());
+    router.push(`/kuis/${quiz}/hasil`);
   };
 
   return (

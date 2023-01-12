@@ -76,27 +76,38 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
 
     swalWithBootstrapButtons
       .fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Apa kamu ingin memulai Quiz?',
+        text: 'Jika kamu memulai Quiz kamu tidak bisa membatalkannya!',
         icon: 'warning',
-        background: '#000',
+        color: '#fff',
+        background: '#6D67E4',
         showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
+        confirmButtonText: 'Kuy, Mulai Quiz',
+        cancelButtonText: 'Batal',
         reverseButtons: true,
       })
       .then((result) => {
         if (result.isConfirmed) {
-          swalWithBootstrapButtons.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          );
+          Swal.fire({
+            color: '#fff',
+            background: '#6D67E4',
+            title: 'Quiz akan segera dimulai!',
+            html: 'Bersiaplah ...',
+            timer: 2000,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            timerProgressBar: true,
+          }).then((result2) => {
+            if (result2.dismiss === Swal.DismissReason.timer) {
+              router.push(`/kuis/${quizData._id}/play`);
+              dispatch(startQuizAction({ quizDataState: data, trace: 0 }));
+              dispatch(setIdentity({ userId: user.id, quizId: data._id }));
+            }
+          });
         }
       });
-    // router.push(`/kuis/${quizData._id}/play`);
-    // dispatch(startQuizAction({ quizDataState: data, trace: 0 }));
-    // dispatch(setIdentity({ userId: user.id, quizId: data._id }));
   };
 
   const IMG = process.env.NEXT_PUBLIC_IMG;
