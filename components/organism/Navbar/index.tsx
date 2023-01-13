@@ -111,10 +111,10 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
         </Link>
         <NavLink>
           <LinkItem isActive={active === 'home'}>
-            <Link href="/join">Beranda</Link>
+            <Link href={isLogin ? '/join' : '/login'}>Beranda</Link>
           </LinkItem>
           <LinkItem isActive={active === 'activity'}>
-            <Link href="/riwayat">Aktivitas</Link>
+            <Link href={isLogin ? '/riwayat' : ''}>Aktivitas</Link>
           </LinkItem>
         </NavLink>
       </NavLinkContainer>

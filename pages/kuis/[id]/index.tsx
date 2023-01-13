@@ -22,6 +22,7 @@ const kuis = (props: kuisDetailProps) => {
   const { data } = props;
   const [quizData, setQuizData] = useState({
     description: '',
+    reference_link: '',
   });
 
   useEffect(() => {
@@ -31,7 +32,10 @@ const kuis = (props: kuisDetailProps) => {
   return (
     <QuizLayout>
       <QuizDescriptionSection>
-        <MateriSection description={quizData.description} />
+        <MateriSection
+          description={quizData.description}
+          referenceLink={quizData.reference_link}
+        />
         <QuizDescSection data={data.quiz} />
       </QuizDescriptionSection>
     </QuizLayout>

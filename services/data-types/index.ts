@@ -40,5 +40,5 @@ export interface QuizDataTypes {
   category: CategoryTypes;
   type: string;
   isActive: boolean;
-  question: any;
+  questions: any;
 }

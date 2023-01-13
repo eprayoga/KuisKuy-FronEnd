@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useState } from 'react';
+import { getQuizResult } from '../../../services/user';
 import { QuizResultDescSection } from '../QuizDescSection';
 import {
   Label,
@@ -10,31 +12,92 @@ import {
   Value,
 } from './ResultQuizSection';
 
-const ResultQuizSection = () => {
+interface ResultQuizSectionProps {
+  quizId: string;
+}
+const ResultQuizSection = (props: ResultQuizSectionProps) => {
+  const { quizId } = props;
+  const [quizHistory, setQuizHistory] = useState<any>([]);
+  const [dataQuiz, setDataQuiz] = useState();
+  const [quizResult, setQuizResult] = useState({
+    totalPoints: 0,
+    correctAnswer: 0,
+    quiz: {},
+    user: {
+      _id: '',
+    },
+  });
+
+  const getHistoryResult = useCallback(async () => {
+    const dataHistory = await getQuizResult(quizId);
+    setQuizHistory(dataHistory.data.quizHistory);
+    setQuizResult(dataHistory.data.quizResult);
+    setDataQuiz(dataHistory.data.dataQuiz);
+  }, [getQuizResult]);
+
+  useEffect(() => {
+    getHistoryResult();
+  }, []);
+
+  const IMG = process.env.NEXT_PUBLIC_IMG;
+
   return (
     <ResultQuizSectionContainer>
       <MainSection>
         <h3>yeayy... Kamu telah menyelesaikan kuis !!!</h3>
         <QuizScore>
           <h3>Nilai Akhir Kamu</h3>
-          <Score>2908</Score>
+          <Score>{quizResult.totalPoints}</Score>
         </QuizScore>
-        <h3>Tentang Kuis Ini</h3>
         <QuizScoreDesc>
-          <Label>Nilai Rata-rata Kuis</Label>
-          <Value>2500</Value>
+          <Label>Jumlah Jawaban Benar</Label>
+          <Value>{quizResult.correctAnswer}</Value>
         </QuizScoreDesc>
-        <QuizScoreDesc>
-          <Label>Nilai Terbesar</Label>
-          <Value>2999</Value>
-        </QuizScoreDesc>
-        <QuizScoreDesc>
-          <Label>Nilai Terkecil</Label>
-          <Value>2100</Value>
-        </QuizScoreDesc>
+        <h2 className="text-center">Rangking Skor Kuis</h2>
+        <table className="table table-responsive-xl" style={{ color: '#fff' }}>
+          <thead>
+            <tr>
+              <th className="text-center">Foto</th>
+              <th>Username</th>
+              <th className="text-center">Jumlah Benar</th>
+              <th>Skor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {quizHistory.map((item: any) => (
+              <tr
+                className="alert"
+                style={
+                  item.user._id === quizResult.user._id
+                    ? { color: '#6d67e4', fontWeight: 'bold' }
+                    : { color: '#fff' }
+                }
+              >
+                <td className="text-center">
+                  <img
+                    src={`${IMG}/${item.user.profile_photo}`}
+                    alt=""
+                    width={30}
+                    height={30}
+                    style={{ borderRadius: '50%', objectFit: 'cover' }}
+                  />
+                </td>
+                <td className="d-flex align-items-center">
+                  <div className="pl-3 email">
+                    <span>{item.user.username}</span>
+                  </div>
+                </td>
+                <td className="text-center">{item.correctAnswer}</td>
+                <td className="status">
+                  <span className="active">{item.totalPoints}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </MainSection>
       <SecondarySection>
-        <QuizResultDescSection />
+        <QuizResultDescSection data={dataQuiz} />
       </SecondarySection>
     </ResultQuizSectionContainer>
   );

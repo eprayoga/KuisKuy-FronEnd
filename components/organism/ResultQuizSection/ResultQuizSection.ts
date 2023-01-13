@@ -52,6 +52,7 @@ export const QuizScoreDesc = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 80px;
 `;
 
 export const Label = styled.div`

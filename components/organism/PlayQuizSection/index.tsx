@@ -31,17 +31,25 @@ const PlayQuizSection = () => {
     options: [],
     answer: -1,
   });
+  const [idQuiz, setIdQuiz] = useState<any>();
 
   const router = useRouter();
+  const { id } = router.query;
 
   // eslint-disable-next-line no-promise-executor-return
   const sleep = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const dispatch = useDispatch();
 
+  useEffect(() => setIdQuiz(id), [id]);
+
   useEffect(() => {
-    setQuestion(quizData?.questions[trace]);
-  }, [trace]);
+    if (trace === -1) {
+      router.push(`/kuis/${idQuiz}`);
+    } else {
+      setQuestion(quizData?.questions[trace]);
+    }
+  }, [trace, idQuiz]);
 
   useEffect(() => {
     setPoinTotal(totalPoints);
@@ -57,6 +65,7 @@ const PlayQuizSection = () => {
       if (answerId === question.answer) {
         point = 100;
         divAnswer[answerId].classList.add('correct');
+        dispatch(nextAnswer({ answer: answerId, point }));
         dispatch(isCorrect());
 
         await sleep(1500);
@@ -75,8 +84,6 @@ const PlayQuizSection = () => {
           timerProgressBar: true,
         }).then((result2) => {
           if (result2.dismiss === Swal.DismissReason.timer) {
-            dispatch(nextAnswer({ answer: answerId, point }));
-
             divAnswer[answerId].classList.remove('correct');
             divAnswer[answerId].classList.remove('wrong');
             divAnswer[question.answer].classList.remove('actual-answer');
@@ -87,6 +94,7 @@ const PlayQuizSection = () => {
         });
       } else {
         divAnswer[answerId].classList.add('wrong');
+        dispatch(nextAnswer({ answer: answerId, point }));
 
         await sleep(1500);
 
@@ -104,8 +112,6 @@ const PlayQuizSection = () => {
           timerProgressBar: true,
         }).then((result2) => {
           if (result2.dismiss === Swal.DismissReason.timer) {
-            dispatch(nextAnswer({ answer: answerId, point }));
-
             divAnswer[answerId].classList.remove('correct');
             divAnswer[answerId].classList.remove('wrong');
             divAnswer[question.answer].classList.remove('actual-answer');

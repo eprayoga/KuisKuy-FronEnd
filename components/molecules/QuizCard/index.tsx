@@ -38,16 +38,30 @@ const QuizCard = (props: QuizCardTypes) => {
   );
 };
 
-export const RiwayatQuizCard = () => {
+interface RiwayatQuizCardProps {
+  createdAt: string;
+  kuisName: string;
+  skor: number;
+  banner: string;
+}
+export const RiwayatQuizCard = (props: RiwayatQuizCardProps) => {
+  const { createdAt, kuisName, skor, banner } = props;
+
   return (
     <CardContainer>
       <Thumbnail>
-        <Image src={WordImg} layout="responsive" />
+        <Image
+          src={banner}
+          layout="responsive"
+          width={300}
+          height={200}
+          objectFit="cover"
+        />
       </Thumbnail>
-      <PlayDate>Tanggal main : 23-10-2022</PlayDate>
-      <Name>Dasar-dasar Word Office</Name>
+      <PlayDate>Tanggal main : {createdAt}</PlayDate>
+      <Name>{kuisName}</Name>
       <Acuration>
-        Akurasi kamu :<span>80%</span>
+        Skor kamu :<span>{skor}</span>
       </Acuration>
     </CardContainer>
   );

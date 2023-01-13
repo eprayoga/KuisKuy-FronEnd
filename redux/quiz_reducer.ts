@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: any = {
   quizData: {},
-  trace: 0,
+  trace: -1,
 };
 
 export const quizReducer = createSlice({
@@ -23,9 +23,16 @@ export const quizReducer = createSlice({
         trace: state.trace + 1,
       };
     },
+    resetAllAction: () => {
+      return {
+        quizData: {},
+        trace: -1,
+      };
+    },
   },
 });
 
-export const { startQuizAction, nextAction } = quizReducer.actions;
+export const { startQuizAction, nextAction, resetAllAction } =
+  quizReducer.actions;
 
 export default quizReducer.reducer;

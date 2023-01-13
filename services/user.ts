@@ -41,3 +41,23 @@ export async function storeQuizResult(data: any) {
     token: true,
   });
 }
+
+export async function getQuizResult(id: string) {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/${id}/result`;
+
+  return callAPI({
+    url,
+    method: 'GET',
+    token: true,
+  });
+}
+
+export async function getHistoryQuiz() {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/history`;
+
+  return callAPI({
+    url,
+    method: 'GET',
+    token: true,
+  });
+}
