@@ -7,7 +7,6 @@ import {
   CardContainer,
   Code,
   Created,
-  DeleteButton,
   EditButton,
   Name,
   PlayDate,
@@ -93,9 +92,6 @@ export const MyQuizCard = (props: MyQuizCardProps) => {
         <EditButton>
           <i className="fa-solid fa-eye" /> <span>Detail</span>
         </EditButton>
-        <DeleteButton>
-          <i className="fa-solid fa-trash" /> <span>Hapus</span>
-        </DeleteButton>
       </ButtonAction>
     </CardContainer>
   );

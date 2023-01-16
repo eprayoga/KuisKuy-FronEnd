@@ -83,11 +83,9 @@ export const Acuration = styled.div`
 // My Quiz Card
 
 export const ButtonAction = styled.div`
+  width: 100%;
   margin-top: 5px;
   margin-bottom: 15px;
-  display: flex;
-  gap: 8px;
-  flex: repeat(2, 1fr);
 `;
 
 export const EditButton = styled.button`

@@ -227,4 +227,18 @@ export const QuizNavbar = () => {
   );
 };
 
+export const CreateQuizNav = () => {
+  return (
+    <NavbarContainer>
+      <NavLinkContainer>
+        <Link href="/join">
+          <a>
+            <NavBrand>KuisKuy</NavBrand>
+          </a>
+        </Link>
+      </NavLinkContainer>
+    </NavbarContainer>
+  );
+};
+
 export default Navbar;

@@ -71,3 +71,15 @@ export async function getMyQuiz() {
     token: true,
   });
 }
+
+export async function createQuiz(data: FormData) {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/create`;
+
+  return callAPI({
+    url,
+    method: 'POST',
+    data,
+    token: true,
+    uploadProgress: true,
+  });
+}

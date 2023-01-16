@@ -1,4 +1,4 @@
-import React from 'react';
+import ReactPlayer from 'react-player';
 import {
   Description,
   MateriSectionConteiner,
@@ -17,16 +17,10 @@ const MateriSection = (props: MateriSectionProps) => {
     <MateriSectionConteiner>
       <h1>Materi Pengantar</h1>
       <VideoSection>
-        <iframe
-          src={`https://www.youtube.com/embed/${referenceLink}`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <ReactPlayer url={referenceLink} width="100%" />
       </VideoSection>
       <h1>Deskripsi</h1>
-      <Description>{description}</Description>
+      <Description dangerouslySetInnerHTML={{ __html: description }} />
     </MateriSectionConteiner>
   );
 };

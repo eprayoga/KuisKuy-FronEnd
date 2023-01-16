@@ -178,3 +178,17 @@ export const ButtonPlus = styled.div`
   font-weight: 700;
   cursor: pointer;
 `;
+
+export const ButtonSubmit = styled.div`
+  padding: 10px 30px;
+  background-color: #6d67e4;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  position: fixed;
+  right: 60px;
+  top: 20px;
+  z-index: 12;
+`;

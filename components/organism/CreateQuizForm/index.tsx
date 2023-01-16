@@ -1,13 +1,18 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/no-array-index-key */
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
-import ReactQuill from 'react-quill';
+import dynamic from 'next/dynamic';
+
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import { CategoryTypes } from '../../../services/data-types';
-import { getQuizCategory } from '../../../services/user';
+import { createQuiz, getQuizCategory } from '../../../services/user';
 import {
   BannerForm,
   ButtonPlus,
+  ButtonSubmit,
   CategorySelect,
   DetailForm,
   DetailFormContainer,
@@ -29,6 +34,8 @@ import {
   YtPlayer,
 } from './CreateQuizFormElements';
 
+const ReactQuill = dynamic(import('react-quill'), { ssr: false });
+
 const CreateQuizForm = () => {
   const [code, setCode] = useState(0);
   const [name, setName] = useState('');
@@ -38,6 +45,9 @@ const CreateQuizForm = () => {
   const [image, setImage] = useState<any>('');
   const [description, setDescription] = useState<any>('');
   const [referenceLink, setReferenceLink] = useState('');
+  const [uploaded, setUploaded] = useState(0);
+
+  const router = useRouter();
 
   const getQuizCategoryAPI = useCallback(async () => {
     const data = await getQuizCategory();
@@ -131,11 +141,40 @@ const CreateQuizForm = () => {
   };
 
   const questionNumberPlus = () => {
-    setQuestion((oldArray: any) => [...oldArray, initialQuestionState]);
+    const newArr = initialQuestionState;
+    newArr.id = question.length;
+    setQuestion((oldArray: any) => [...oldArray, newArr]);
   };
 
   const handleRemoveQuestion = (index: any) => {
     setQuestion(question.filter((item: any) => item.id !== index));
+  };
+
+  const onSubmit = async () => {
+    const uploadInterval = setInterval(() => {
+      const uploadedProgress = localStorage.getItem('upload-progress');
+      setUploaded(parseInt(uploadedProgress!, 10));
+    }, 500);
+    const data = new FormData();
+
+    data.append('banner', image);
+    data.append('code', `${code}`);
+    data.append('kuisName', name);
+    data.append('category', category);
+    data.append('reference_link', referenceLink);
+    data.append('description', description);
+    data.append('type', 'multiple choice');
+    data.append('questions', JSON.stringify(question));
+
+    const result = await createQuiz(data);
+    if (result.error) {
+      clearInterval(uploadInterval);
+      toast.error(result?.message);
+    } else {
+      clearInterval(uploadInterval);
+      toast.success('Berhasil Membuat Kuis');
+      router.push('kuis-saya');
+    }
   };
 
   return (
@@ -172,7 +211,7 @@ const CreateQuizForm = () => {
           <DetailForm>
             <FormGroup>
               <Label>Kode Kuis</Label>
-              <Input value={code} disabled />
+              <Input value={code} disabled style={{ color: '#808080' }} />
             </FormGroup>
             <FormGroup>
               <Label>Nama Kuis</Label>
@@ -221,7 +260,7 @@ const CreateQuizForm = () => {
           theme="snow"
           className="editor-input"
           value={description}
-          onChange={() => setDescription(description)}
+          onChange={(e) => setDescription(e)}
         />
       </FormContainer>
 
@@ -233,7 +272,7 @@ const CreateQuizForm = () => {
             quest: {
               options: any;
               id: any;
-              question: ReactQuill.Value | undefined;
+              question: any;
             },
             index: any
           ) => (
@@ -330,6 +369,25 @@ const CreateQuizForm = () => {
         >
           Tambah Soal
         </ButtonPlus>
+        <ButtonSubmit onClick={onSubmit}>Simpan Quiz</ButtonSubmit>
+        {uploaded > 0 && (
+          <div className="progress fixed-top" style={{ zIndex: 12 }}>
+            <div
+              className={
+                uploaded === 100
+                  ? 'progress-bar progress-bar-striped progress-bar-animated bg-success'
+                  : 'progress-bar progress-bar-striped progress-bar-animated'
+              }
+              role="progressbar"
+              style={{ width: `${uploaded}%` }}
+              aria-valuenow={uploaded}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              {uploaded}%
+            </div>
+          </div>
+        )}
       </QustionFormSection>
     </>
   );

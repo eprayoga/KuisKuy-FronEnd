@@ -193,7 +193,7 @@ const PlayQuizSection = () => {
   return (
     <PlayQuizSectionContainer>
       <MainQuizSection>
-        <QuestionSection>{question.question}</QuestionSection>
+        <QuestionSection dangerouslySetInnerHTML={{ __html: question.question }} />
         <TimeBar max={100} value={100} />
         <AnswerSection>
           {question.options.map((option: any) => (
@@ -201,9 +201,8 @@ const PlayQuizSection = () => {
               id="answerItem"
               key={option.id}
               onClick={onAnswer ? () => null : () => setAnswer(option.id)}
-            >
-              {option.option}
-            </AnswerItem>
+              dangerouslySetInnerHTML={{ __html: option.option }}
+            />
           ))}
         </AnswerSection>
       </MainQuizSection>

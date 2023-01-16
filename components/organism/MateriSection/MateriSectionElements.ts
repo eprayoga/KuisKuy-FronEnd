@@ -28,6 +28,4 @@ export const VideoSection = styled.div`
   }
 `;
 
-export const Description = styled.p`
-  font-size: 16px;
-`;
+export const Description = styled.div``;
