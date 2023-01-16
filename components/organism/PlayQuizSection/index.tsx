@@ -65,10 +65,9 @@ const PlayQuizSection = () => {
       if (answerId === question.answer) {
         point = 100;
         divAnswer[answerId].classList.add('correct');
-        dispatch(nextAnswer({ answer: answerId, point }));
         dispatch(isCorrect());
 
-        await sleep(1500);
+        await sleep(1000);
 
         Swal.fire({
           icon: 'success',
@@ -84,6 +83,7 @@ const PlayQuizSection = () => {
           timerProgressBar: true,
         }).then((result2) => {
           if (result2.dismiss === Swal.DismissReason.timer) {
+            dispatch(nextAnswer({ answer: answerId, point }));
             divAnswer[answerId].classList.remove('correct');
             divAnswer[answerId].classList.remove('wrong');
             divAnswer[question.answer].classList.remove('actual-answer');
@@ -94,9 +94,8 @@ const PlayQuizSection = () => {
         });
       } else {
         divAnswer[answerId].classList.add('wrong');
-        dispatch(nextAnswer({ answer: answerId, point }));
 
-        await sleep(1500);
+        await sleep(1000);
 
         Swal.fire({
           icon: 'error',
@@ -112,6 +111,7 @@ const PlayQuizSection = () => {
           timerProgressBar: true,
         }).then((result2) => {
           if (result2.dismiss === Swal.DismissReason.timer) {
+            dispatch(nextAnswer({ answer: answerId, point }));
             divAnswer[answerId].classList.remove('correct');
             divAnswer[answerId].classList.remove('wrong');
             divAnswer[question.answer].classList.remove('actual-answer');
@@ -128,7 +128,7 @@ const PlayQuizSection = () => {
         divAnswer[answerId].classList.add('correct');
         dispatch(isCorrect());
 
-        await sleep(1500);
+        await sleep(1000);
 
         Swal.fire({
           icon: 'success',
@@ -156,7 +156,7 @@ const PlayQuizSection = () => {
       } else {
         divAnswer[answerId].classList.add('wrong');
 
-        await sleep(1500);
+        await sleep(1000);
 
         Swal.fire({
           icon: 'error',

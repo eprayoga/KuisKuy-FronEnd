@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import Image from 'next/image';
 import Link from 'next/link';
-import WordImg from '../../../public/assets/img/word.jpg';
 import {
   Acuration,
   ButtonAction,
   CardContainer,
+  Code,
+  Created,
   DeleteButton,
   EditButton,
   Name,
@@ -67,17 +68,30 @@ export const RiwayatQuizCard = (props: RiwayatQuizCardProps) => {
   );
 };
 
-export const MyQuizCard = () => {
+interface MyQuizCardProps {
+  createdAt: string;
+  kuisName: string;
+  type: string;
+  banner: string;
+  code: string;
+}
+export const MyQuizCard = (props: MyQuizCardProps) => {
+  const { createdAt, kuisName, type, banner, code } = props;
+
   return (
     <CardContainer>
       <Thumbnail>
-        <Image src={WordImg} layout="responsive" />
+        <Image src={banner} layout="fixed" width={300} height={130} />
       </Thumbnail>
-      <Type>Multiple Choice</Type>
-      <Name>Dasar-dasar Word Office</Name>
+      <div className="d-flex justify-content-between align-items-center">
+        <Type>{type}</Type>
+        <Code>{`Kode Kuis : ${code}`}</Code>
+      </div>
+      <Name>{kuisName}</Name>
+      <Created>Dibuat pada : {createdAt}</Created>
       <ButtonAction>
         <EditButton>
-          <i className="fa-solid fa-pen" /> <span>Ubah</span>
+          <i className="fa-solid fa-eye" /> <span>Detail</span>
         </EditButton>
         <DeleteButton>
           <i className="fa-solid fa-trash" /> <span>Hapus</span>

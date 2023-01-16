@@ -61,3 +61,13 @@ export async function getHistoryQuiz() {
     token: true,
   });
 }
+
+export async function getMyQuiz() {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/myquiz`;
+
+  return callAPI({
+    url,
+    method: 'GET',
+    token: true,
+  });
+}

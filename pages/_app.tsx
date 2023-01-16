@@ -8,6 +8,7 @@ import { Persistor, store } from '../redux/store';
 import GlobalStyle from '../styles/GlobalStyle';
 
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-quill/dist/quill.snow.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

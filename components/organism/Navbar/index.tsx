@@ -62,7 +62,7 @@ const Navbar = () => {
 };
 
 interface NavbarJoinProps {
-  active: 'activity' | 'home';
+  active?: 'activity' | 'home';
 }
 export const NavbarJoin = (props: NavbarJoinProps) => {
   const { active } = props;
@@ -111,10 +111,10 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
         </Link>
         <NavLink>
           <LinkItem isActive={active === 'home'}>
-            <Link href={isLogin ? '/join' : '/login'}>Beranda</Link>
+            <Link href="/join">Beranda</Link>
           </LinkItem>
           <LinkItem isActive={active === 'activity'}>
-            <Link href={isLogin ? '/riwayat' : ''}>Aktivitas</Link>
+            <Link href={isLogin ? '/riwayat' : '/masuk'}>Aktivitas</Link>
           </LinkItem>
         </NavLink>
       </NavLinkContainer>

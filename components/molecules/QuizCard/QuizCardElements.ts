@@ -16,10 +16,16 @@ export const Thumbnail = styled.div`
   height: 130px;
   overflow: hidden;
   border-radius: 10px;
+  margin-bottom: 5px;
+
+  span {
+    width: 100% !important;
+  }
 
   img {
     object-fit: cover !important;
     width: 100% !important;
+    height: 130px !important;
   }
 `;
 
@@ -27,13 +33,26 @@ export const Type = styled.p`
   font-weight: 400;
   font-size: 12px;
   color: #6d67e4;
-  margin-top: 5px;
+  margin-block: 0px;
+`;
+
+export const Code = styled.div`
+  font-size: 10px;
+  color: #1e1e1e;
+`;
+
+export const Created = styled.p`
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: #8e8e8e;
+  margin-top: 10px;
 `;
 
 export const Name = styled.h3`
   font-weight: 500;
   font-size: 16px;
   color: #1e1e1e;
+  margin-bottom: 2px;
 `;
 
 export const Played = styled.p`

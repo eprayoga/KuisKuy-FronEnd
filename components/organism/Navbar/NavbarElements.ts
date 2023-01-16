@@ -35,6 +35,7 @@ export const NavLink = styled.ul`
   align-items: center;
   margin-left: 80px;
   list-style: none;
+  margin-bottom: 0px;
 `;
 
 interface LinkItemTypes {

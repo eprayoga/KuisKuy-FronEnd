@@ -43,6 +43,7 @@
     "react/require-default-props": "off",
     "react/no-unescaped-entities": "off",
     "comma-dangle": "off",
+    "function-paren-newline": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

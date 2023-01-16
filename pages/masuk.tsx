@@ -27,6 +27,7 @@ const BannerLogin = styled.div`
   h1 {
     margin: 20px 0;
     width: 80%;
+    font-size: 28px;
   }
 
   p {
