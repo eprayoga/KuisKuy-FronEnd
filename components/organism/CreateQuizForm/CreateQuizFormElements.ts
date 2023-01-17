@@ -105,6 +105,22 @@ export const YtPlayer = styled.div`
   border-radius: 20px;
   overflow: hidden;
   margin: 0px auto;
+  position: relative;
+
+  &::after {
+    content: 'Loading...';
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    background-color: #dfdfdf;
+    position: absolute;
+    z-index: -1;
+  }
 `;
 
 export const QustionFormSection = styled.ol`

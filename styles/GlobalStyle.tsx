@@ -16,6 +16,11 @@ const GlobalStyle = createGlobalStyle`
         color: #0C145A;
         overflow-x: hidden;
     }
+
+    a {
+        text-decoration: none;
+        color: #0C145A;
+    }
 `;
 
 export default GlobalStyle;

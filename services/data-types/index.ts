@@ -3,6 +3,7 @@ export interface QuizItemTypes {
   type: string;
   kuisName: string;
   banner: string;
+  questions: Array<any>;
 }
 
 export interface LoginTypes {

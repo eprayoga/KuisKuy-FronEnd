@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -240,9 +241,18 @@ export const QuizResultDescSection = (props: QuizResultDescSectionProps) => {
     <QuizDescContainer>
       <QuizDescCard>
         <QuizDetail>
-          <QuizImage>
-            <Image src={quizImage} width={90} height={90} objectFit="cover" />
-          </QuizImage>
+          <Link href={`/kuis/${quizData?._id}`}>
+            <a>
+              <QuizImage>
+                <Image
+                  src={quizImage}
+                  width={90}
+                  height={90}
+                  objectFit="cover"
+                />
+              </QuizImage>
+            </a>
+          </Link>
           <Detail>
             <Name>{quizData?.kuisName}</Name>
             <Other>{`${quizData?.questions.length} Soal`}</Other>

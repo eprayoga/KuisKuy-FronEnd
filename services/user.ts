@@ -83,3 +83,14 @@ export async function createQuiz(data: FormData) {
     uploadProgress: true,
   });
 }
+
+export async function getDetailHistory(id: string, token: string) {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/history/${id}`;
+
+  return callAPI({
+    url,
+    serverToken: token,
+    method: 'GET',
+    token: true,
+  });
+}

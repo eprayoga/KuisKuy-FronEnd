@@ -245,6 +245,9 @@ const CreateQuizForm = () => {
             value={referenceLink}
             onChange={(event) => setReferenceLink(event.target.value)}
           />
+          <span style={{ fontSize: '9px' }}>
+            *Video diambil dari link video youtube
+          </span>
           {referenceLink !== '' && (
             <>
               <h6 className="text-center mt-3">Preview video</h6>
@@ -285,7 +288,12 @@ const CreateQuizForm = () => {
                   onChange={updateQuestion(index)}
                 />
               </QuestionForm>
-              <h5>Opsi Jawaban</h5>
+              <h5>
+                Opsi Jawaban
+                <span style={{ fontSize: '9px' }}>
+                  (*Centang jawaban yang benar)
+                </span>
+              </h5>
               <QuestionOption>
                 <OptionItems>
                   <OptionCheck

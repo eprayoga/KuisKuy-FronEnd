@@ -2,36 +2,27 @@ import { useCallback, useEffect, useState } from 'react';
 import { getQuizResult } from '../../../services/user';
 import { QuizResultDescSection } from '../QuizDescSection';
 import {
+  HistoryContainer,
   Label,
   MainSection,
   QuizScore,
   QuizScoreDesc,
-  ResultQuizSectionContainer,
   Score,
   SecondarySection,
   Value,
-} from './ResultQuizSection';
+} from './HistoryQuizDetailElements';
 
-interface ResultQuizSectionProps {
-  quizId: string;
+interface HistoryQuizDetailProps {
+  data: any;
 }
-const ResultQuizSection = (props: ResultQuizSectionProps) => {
-  const { quizId } = props;
+const HistoryQuizDetail = (props: HistoryQuizDetailProps) => {
+  const { data } = props;
   const [quizHistory, setQuizHistory] = useState<any>([]);
   const [dataQuiz, setDataQuiz] = useState();
-  const [quizResult, setQuizResult] = useState({
-    totalPoints: 0,
-    correctAnswer: 0,
-    quiz: {},
-    user: {
-      _id: '',
-    },
-  });
 
   const getHistoryResult = useCallback(async () => {
-    const dataHistory = await getQuizResult(quizId);
+    const dataHistory = await getQuizResult(data.quiz._id);
     setQuizHistory(dataHistory.data.quizHistory);
-    setQuizResult(dataHistory.data.quizResult);
     setDataQuiz(dataHistory.data.dataQuiz);
   }, [getQuizResult]);
 
@@ -40,7 +31,6 @@ const ResultQuizSection = (props: ResultQuizSectionProps) => {
   }, []);
 
   const IMG = process.env.NEXT_PUBLIC_IMG;
-
   const toDate = (fulldate: any) => {
     const date = new Date(fulldate);
 
@@ -67,18 +57,24 @@ const ResultQuizSection = (props: ResultQuizSectionProps) => {
   };
 
   return (
-    <ResultQuizSectionContainer>
+    <HistoryContainer>
       <MainSection>
-        <h3>yeayy... Kamu telah menyelesaikan kuis !!!</h3>
+        <h3>Riwayat Pengerjaan Kuis</h3>
         <QuizScore>
           <h3>Nilai Akhir Kamu</h3>
-          <Score>{quizResult.totalPoints}</Score>
+          <Score>{data.totalPoints}</Score>
         </QuizScore>
         <QuizScoreDesc>
           <Label>Jumlah Jawaban Benar</Label>
-          <Value>{quizResult.correctAnswer}</Value>
+          <Value>{data.correctAnswer}</Value>
         </QuizScoreDesc>
-        <h2 className="text-center">Rangking Skor Kuis</h2>
+        <QuizScoreDesc>
+          <Label>Tanggal Main</Label>
+          <Value>{toDate(data.createdAt)}</Value>
+        </QuizScoreDesc>
+        <h2 className="text-center" style={{ marginTop: '80px' }}>
+          Rangking Skor Kuis
+        </h2>
         <table className="table table-responsive-xl" style={{ color: '#fff' }}>
           <thead>
             <tr>
@@ -94,7 +90,7 @@ const ResultQuizSection = (props: ResultQuizSectionProps) => {
               <tr
                 className="alert"
                 style={
-                  item.user._id === quizResult.user._id
+                  item.user._id === data.user._id
                     ? { color: '#6d67e4', fontWeight: 'bold' }
                     : { color: '#fff' }
                 }
@@ -126,8 +122,8 @@ const ResultQuizSection = (props: ResultQuizSectionProps) => {
       <SecondarySection>
         <QuizResultDescSection data={dataQuiz} />
       </SecondarySection>
-    </ResultQuizSectionContainer>
+    </HistoryContainer>
   );
 };
 
-export default ResultQuizSection;
+export default HistoryQuizDetail;

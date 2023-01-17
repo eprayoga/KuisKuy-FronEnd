@@ -20,9 +20,10 @@ interface QuizCardTypes {
   name: string;
   banner: string;
   id: string;
+  questionsTotal: Number;
 }
 const QuizCard = (props: QuizCardTypes) => {
-  const { type, name, banner, id } = props;
+  const { type, name, banner, id, questionsTotal } = props;
 
   return (
     <Link href={`/kuis/${id}`}>
@@ -32,7 +33,7 @@ const QuizCard = (props: QuizCardTypes) => {
         </Thumbnail>
         <Type>{type}</Type>
         <Name>{name}</Name>
-        <Played>200 kali dimainkan</Played>
+        <Played>Jumlah Soal : {`${questionsTotal} Soal`}</Played>
       </CardContainer>
     </Link>
   );

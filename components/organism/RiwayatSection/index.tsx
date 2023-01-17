@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import { getHistoryQuiz } from '../../../services/user';
 import { RiwayatQuizCard } from '../../molecules/QuizCard';
@@ -19,10 +20,25 @@ const RiwayatSection = () => {
     const date = new Date(fulldate);
 
     const d = date.getDate();
-    const m = date.getMonth() + 1;
+    const m = date.getMonth();
+
+    const indoDate = [
+      'Januari',
+      'Februari',
+      'Maret',
+      'April',
+      'Mei',
+      'Juni',
+      'Juli',
+      'Agustus',
+      'September',
+      'Oktober',
+      'November',
+      'Desember',
+    ];
     const y = date.getFullYear();
 
-    return `${d}-${m}-${y}`;
+    return `${d} ${indoDate[m]} ${y}`;
   };
 
   const IMG = process.env.NEXT_PUBLIC_IMG;
@@ -30,12 +46,16 @@ const RiwayatSection = () => {
     <RiwayatContainer>
       <RiwayatList>
         {historyQuizList.map((item: any) => (
-          <RiwayatQuizCard
-            banner={`${IMG}/${item.quiz.banner}`}
-            kuisName={item.quiz.kuisName}
-            skor={item.totalPoints}
-            createdAt={toDate(item.createdAt)}
-          />
+          <Link href={`/kuis/riwayat/${item._id}`}>
+            <a>
+              <RiwayatQuizCard
+                banner={`${IMG}/${item.quiz.banner}`}
+                kuisName={item.quiz.kuisName}
+                skor={item.totalPoints}
+                createdAt={toDate(item.createdAt)}
+              />
+            </a>
+          </Link>
         ))}
       </RiwayatList>
     </RiwayatContainer>

@@ -31,3 +31,17 @@ export const AddButton = styled.button`
     transform: rotate(180deg);
   }
 `;
+
+export const BurronCreate = styled.div`
+  text-align: center;
+  padding: 10px 30px;
+  font-size: 18px;
+  background-color: #6d67e4;
+  color: #fff;
+  width: fit-content;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
