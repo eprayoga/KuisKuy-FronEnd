@@ -155,7 +155,11 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
   );
 };
 
-export const QuizNavbar = () => {
+interface QuizNavbarProps {
+  backLink: string;
+}
+export const QuizNavbar = (props: QuizNavbarProps) => {
+  const { backLink } = props;
   const [dropdown, setDropdown] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState({
@@ -192,10 +196,12 @@ export const QuizNavbar = () => {
   };
   return (
     <QuizNavbarContainer>
-      <Link href="/join">
-        <BackButton>
-          <i className="fa-solid fa-angle-left" />
-        </BackButton>
+      <Link href={backLink}>
+        <a style={{ color: '#fff' }}>
+          <BackButton>
+            <i className="fa-solid fa-angle-left" />
+          </BackButton>
+        </a>
       </Link>
       {isLogin ? (
         <UserContainer

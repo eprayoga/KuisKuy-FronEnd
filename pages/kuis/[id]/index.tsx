@@ -30,7 +30,7 @@ const kuis = (props: kuisDetailProps) => {
   }, [data]);
 
   return (
-    <QuizLayout>
+    <QuizLayout backLink="/join">
       <QuizDescriptionSection>
         <MateriSection
           description={quizData.description}

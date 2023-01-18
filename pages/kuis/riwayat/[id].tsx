@@ -9,7 +9,7 @@ const riwayat = (props: riwayatProps) => {
   const { historyDetail } = props;
 
   return (
-    <QuizLayout>
+    <QuizLayout backLink="/riwayat">
       <HistoryQuizDetail data={historyDetail.historyQuiz} />
     </QuizLayout>
   );

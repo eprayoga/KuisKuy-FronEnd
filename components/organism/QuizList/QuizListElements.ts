@@ -13,7 +13,7 @@ export const CategoryTitle = styled.h2`
 
 export const CardList = styled.div`
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
   gap: 10px;
+  overflow: scroll;
 `;

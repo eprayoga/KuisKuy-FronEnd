@@ -6,13 +6,14 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import quizImage from '../../../public/assets/img/word.jpg';
 import { setIdentity } from '../../../redux/answer_reducer';
 import { startQuizAction } from '../../../redux/quiz_reducer';
 import { JWTPayloadTypes, UserTypes } from '../../../services/data-types';
 import { QuizButton } from '../../atoms/Button';
+import { Code } from '../MateriSection/MateriSectionElements';
 import {
   Detail,
+  MyQuizDescContainer,
   Name,
   Other,
   QuizBy,
@@ -20,6 +21,7 @@ import {
   QuizDescContainer,
   QuizDetail,
   QuizImage,
+  RankQuizContainer,
 } from './QuizDescSectionElements';
 
 interface QuizDescSectionProps {
@@ -51,6 +53,7 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
     banner: '',
     questions: [],
     kuisName: '',
+    code: '',
     user: {
       name: '',
     },
@@ -124,6 +127,7 @@ const QuizDescSection = (props: QuizDescSectionProps) => {
           </QuizImage>
           <Detail>
             <Name>{quizData.kuisName}</Name>
+            <Code>{`Kode Kuis : ${quizData?.code}`}</Code>
             <Other>{`${quizData?.questions.length} Soal`}</Other>
           </Detail>
         </QuizDetail>
@@ -162,6 +166,7 @@ export const QuizResultDescSection = (props: QuizResultDescSectionProps) => {
     banner: '',
     kuisName: '',
     questions: [],
+    code: '',
     user: {
       name: '',
     },
@@ -237,6 +242,9 @@ export const QuizResultDescSection = (props: QuizResultDescSectionProps) => {
     router.push('/join');
   };
 
+  const IMG = process.env.NEXT_PUBLIC_IMG;
+  const bannerImg = `${IMG}/${quizData?.banner}`;
+
   return (
     <QuizDescContainer>
       <QuizDescCard>
@@ -245,7 +253,7 @@ export const QuizResultDescSection = (props: QuizResultDescSectionProps) => {
             <a>
               <QuizImage>
                 <Image
-                  src={quizImage}
+                  src={bannerImg}
                   width={90}
                   height={90}
                   objectFit="cover"
@@ -255,6 +263,7 @@ export const QuizResultDescSection = (props: QuizResultDescSectionProps) => {
           </Link>
           <Detail>
             <Name>{quizData?.kuisName}</Name>
+            <Code>{`Kode Kuis : ${quizData?.code}`}</Code>
             <Other>{`${quizData?.questions.length} Soal`}</Other>
           </Detail>
         </QuizDetail>
@@ -275,6 +284,125 @@ export const QuizResultDescSection = (props: QuizResultDescSectionProps) => {
         <span>Cari kuis yang lain</span>
       </QuizButton>
     </QuizDescContainer>
+  );
+};
+
+interface MyQuizDescProps {
+  data: any;
+}
+export const MyQuizDesc = (props: MyQuizDescProps) => {
+  const { data } = props;
+  const [quizData, setQuizData] = useState<any>();
+  const [quizHistory, setQuizHistory] = useState<any>([]);
+
+  useEffect(() => {
+    setQuizData(data.myQuiz);
+    setQuizHistory(data.HistoryQuiz);
+  }, [data.myQuiz]);
+
+  const IMG = process.env.NEXT_PUBLIC_IMG;
+  const bannerImg = `${IMG}/${quizData?.banner}`;
+
+  const toDate = (fulldate: any) => {
+    const date = new Date(fulldate);
+
+    const d = date.getDate();
+    const m = date.getMonth();
+
+    const indoDate = [
+      'Januari',
+      'Februari',
+      'Maret',
+      'April',
+      'Mei',
+      'Juni',
+      'Juli',
+      'Agustus',
+      'September',
+      'Oktober',
+      'November',
+      'Desember',
+    ];
+    const y = date.getFullYear();
+
+    return `${d} ${indoDate[m]} ${y}`;
+  };
+  return (
+    <MyQuizDescContainer>
+      <QuizDescCard>
+        <QuizDetail>
+          <QuizImage>
+            <Image src={bannerImg} width={90} height={90} objectFit="cover" />
+          </QuizImage>
+          <Detail>
+            <Name>{quizData?.kuisName}</Name>
+            <Code>{`Kode Kuis : ${quizData?.code}`}</Code>
+            <Other>{`${quizData?.questions.length} Soal`}</Other>
+          </Detail>
+        </QuizDetail>
+        <QuizBy>
+          <span>oleh : </span>
+          {quizData?.user.name}
+        </QuizBy>
+      </QuizDescCard>
+      <QuizButton color="#6D67E4">
+        <i className="fa-solid fa-share-nodes" />
+        <span>Bagikan Kuis</span>
+      </QuizButton>
+      <RankQuizContainer>
+        <h2
+          style={{
+            fontWeight: '700',
+            fontSize: '24px',
+            textAlign: 'center',
+            marginBottom: '20px',
+          }}
+        >
+          Ranking Kuis
+        </h2>
+
+        {quizHistory.length > 0 ? (
+          <table
+            className="table table-responsive-xl"
+            style={{ color: '#fff' }}
+          >
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th className="text-center">Tanggal Main</th>
+                <th>Skor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {quizHistory?.map((item: any) => (
+                <tr className="alert">
+                  <td className="d-flex align-items-center gap-2">
+                    <img
+                      src={`${IMG}/${item.user.profile_photo}`}
+                      alt=""
+                      width={20}
+                      height={20}
+                      style={{ borderRadius: '50%', objectFit: 'cover' }}
+                    />
+                    <div className="pl-3 email">
+                      <span>{item.user.username}</span>
+                    </div>
+                  </td>
+                  <td className="text-center">{toDate(item.createdAt)}</td>
+                  <td className="status">
+                    <span className="active">{item.totalPoints}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <span style={{ color: '#8e8e8e' }}>
+            Belum ada user yang memainkan kuis ini
+          </span>
+        )}
+      </RankQuizContainer>
+    </MyQuizDescContainer>
   );
 };
 

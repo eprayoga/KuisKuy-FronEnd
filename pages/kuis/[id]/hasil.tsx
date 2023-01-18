@@ -15,7 +15,7 @@ const hasil = (props: kuisHasilProps) => {
   dispatch(resetAllAction());
 
   return (
-    <QuizLayout>
+    <QuizLayout backLink={`/kuis/${data.quiz._id}`}>
       <ResultQuizSection quizId={data.quiz._id} />
     </QuizLayout>
   );

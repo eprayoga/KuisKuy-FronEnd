@@ -53,6 +53,7 @@ const RiwayatSection = () => {
                 kuisName={item.quiz.kuisName}
                 skor={item.totalPoints}
                 createdAt={toDate(item.createdAt)}
+                code={item.quiz.code}
               />
             </a>
           </Link>

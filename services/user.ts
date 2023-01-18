@@ -105,3 +105,13 @@ export async function getMyQuizDetail(id: string, token: string) {
     token: true,
   });
 }
+
+export async function getQuizByCode(data: any) {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/code`;
+
+  return callAPI({
+    url,
+    method: 'POST',
+    data,
+  });
+}

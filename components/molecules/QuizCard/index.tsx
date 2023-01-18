@@ -21,9 +21,10 @@ interface QuizCardTypes {
   banner: string;
   id: string;
   questionsTotal: Number;
+  code: string;
 }
 const QuizCard = (props: QuizCardTypes) => {
-  const { type, name, banner, id, questionsTotal } = props;
+  const { type, name, banner, id, questionsTotal, code } = props;
 
   return (
     <Link href={`/kuis/${id}`}>
@@ -31,7 +32,10 @@ const QuizCard = (props: QuizCardTypes) => {
         <Thumbnail>
           <Image src={banner} width={300} height={200} />
         </Thumbnail>
-        <Type>{type}</Type>
+        <div className="d-flex justify-content-between align-items-center">
+          <Type>{type}</Type>
+          <Code>{`Kode Kuis : ${code}`}</Code>
+        </div>
         <Name>{name}</Name>
         <Played>Jumlah Soal : {`${questionsTotal} Soal`}</Played>
       </CardContainer>
@@ -44,9 +48,10 @@ interface RiwayatQuizCardProps {
   kuisName: string;
   skor: number;
   banner: string;
+  code: string;
 }
 export const RiwayatQuizCard = (props: RiwayatQuizCardProps) => {
-  const { createdAt, kuisName, skor, banner } = props;
+  const { createdAt, kuisName, skor, banner, code } = props;
 
   return (
     <CardContainer>
@@ -61,6 +66,7 @@ export const RiwayatQuizCard = (props: RiwayatQuizCardProps) => {
       </Thumbnail>
       <PlayDate>Tanggal main : {createdAt}</PlayDate>
       <Name>{kuisName}</Name>
+      <Code>Kode Kuis : {code}</Code>
       <Acuration>
         Skor kamu :<span>{skor}</span>
       </Acuration>

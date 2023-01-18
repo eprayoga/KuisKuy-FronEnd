@@ -52,6 +52,10 @@ export const AnswerItem = styled.div`
   cursor: pointer;
   transition: ease all 0.3s;
 
+  p {
+    margin: 0;
+  }
+
   &:hover {
     border: 3px solid #fff;
   }

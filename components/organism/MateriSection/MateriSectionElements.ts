@@ -29,3 +29,46 @@ export const VideoSection = styled.div`
 `;
 
 export const Description = styled.div``;
+
+export const QuestionsSection = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const QuestionItem = styled.div``;
+
+export const Question = styled.div``;
+
+export const OptionsList = styled.ul`
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 30px;
+`;
+
+interface OptionItemTypes {
+  isAnswer?: boolean;
+}
+export const OptionItem = styled.li<OptionItemTypes>`
+  padding: 10px 20px;
+  background-color: ${(props) => (props.isAnswer ? '#6d67e4' : '#45474b')};
+  border-radius: 10px;
+
+  p {
+    margin: 0;
+  }
+`;
+
+export const Code = styled.div`
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+  span {
+    color: #6d67e4;
+  }
+`;

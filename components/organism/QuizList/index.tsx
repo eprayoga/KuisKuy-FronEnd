@@ -30,6 +30,7 @@ const QuizList = () => {
             banner={`${API_IMG}/${item.banner}`}
             type={item.type}
             questionsTotal={item.questions.length}
+            code={item.code}
           />
         ))}
       </CardList>

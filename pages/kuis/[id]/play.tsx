@@ -3,7 +3,7 @@ import QuizLayout from '../../../layouts/QuizLayout';
 
 const play = () => {
   return (
-    <QuizLayout>
+    <QuizLayout backLink="#">
       <PlayQuizSection />
     </QuizLayout>
   );

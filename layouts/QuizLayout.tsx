@@ -14,12 +14,13 @@ const QuizLayoutContainer = styled.section`
 
 interface QuizLayoutProps {
   children?: React.ReactNode;
+  backLink: string;
 }
 const QuizLayout = (props: QuizLayoutProps) => {
-  const { children } = props;
+  const { children, backLink } = props;
   return (
     <QuizLayoutContainer>
-      <QuizNavbar />
+      <QuizNavbar backLink={backLink} />
       <main>{children}</main>
     </QuizLayoutContainer>
   );

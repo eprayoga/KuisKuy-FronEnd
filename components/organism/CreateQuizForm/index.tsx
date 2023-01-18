@@ -284,6 +284,7 @@ const CreateQuizForm = () => {
                 <ReactQuill
                   theme="snow"
                   className="question-input"
+                  modules={modulesOptionQuest}
                   value={quest.question}
                   onChange={updateQuestion(index)}
                 />

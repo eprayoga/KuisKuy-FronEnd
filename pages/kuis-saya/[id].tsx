@@ -1,5 +1,17 @@
+import styled from 'styled-components';
+import { MyQuizMateri } from '../../components/organism/MateriSection';
+import { MyQuizDesc } from '../../components/organism/QuizDescSection';
 import QuizLayout from '../../layouts/QuizLayout';
 import { getMyQuizDetail } from '../../services/user';
+
+const MyQuizDescriptionSection = styled.section`
+  width: 100%;
+  padding: 20px 80px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 5fr 3fr;
+  position: relative;
+`;
 
 interface riwayatProps {
   data: any;
@@ -7,11 +19,16 @@ interface riwayatProps {
 const quizDetail = (props: riwayatProps) => {
   const { data } = props;
 
-  console.log(data);
-
   return (
-    <QuizLayout>
-      <div className="m">Hello World</div>
+    <QuizLayout backLink="/kuis-saya">
+      <MyQuizDescriptionSection>
+        <MyQuizMateri
+          description={data.myQuiz.description}
+          questions={data.myQuiz.questions}
+          referenceLink={data.myQuiz.reference_link}
+        />
+        <MyQuizDesc data={data} />
+      </MyQuizDescriptionSection>
     </QuizLayout>
   );
 };
