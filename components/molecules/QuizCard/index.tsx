@@ -74,12 +74,13 @@ interface MyQuizCardProps {
   type: string;
   banner: string;
   code: string;
+  id: string;
 }
 export const MyQuizCard = (props: MyQuizCardProps) => {
-  const { createdAt, kuisName, type, banner, code } = props;
+  const { createdAt, kuisName, type, banner, code, id } = props;
 
   return (
-    <CardContainer>
+    <CardContainer style={{ cursor: 'auto' }}>
       <Thumbnail>
         <Image src={banner} layout="fixed" width={300} height={130} />
       </Thumbnail>
@@ -90,9 +91,13 @@ export const MyQuizCard = (props: MyQuizCardProps) => {
       <Name>{kuisName}</Name>
       <Created>Dibuat pada : {createdAt}</Created>
       <ButtonAction>
-        <EditButton>
-          <i className="fa-solid fa-eye" /> <span>Detail</span>
-        </EditButton>
+        <Link href={`/kuis-saya/${id}`}>
+          <a>
+            <EditButton>
+              <i className="fa-solid fa-eye" /> <span>Detail</span>
+            </EditButton>
+          </a>
+        </Link>
       </ButtonAction>
     </CardContainer>
   );

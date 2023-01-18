@@ -73,6 +73,7 @@ const MyQuizSection = () => {
         <MyQuizList>
           {myQuiz.map((item: any) => (
             <MyQuizCard
+              id={item._id}
               banner={`${API_IMG}/${item.banner}`}
               kuisName={item.kuisName}
               code={item.code}

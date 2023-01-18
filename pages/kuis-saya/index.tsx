@@ -1,6 +1,6 @@
-import ActivityBar from '../components/organism/ActivityBar';
-import MyQuizSection from '../components/organism/MyQuizSection';
-import { NavbarJoin } from '../components/organism/Navbar';
+import ActivityBar from '../../components/organism/ActivityBar';
+import MyQuizSection from '../../components/organism/MyQuizSection';
+import { NavbarJoin } from '../../components/organism/Navbar';
 
 const MyQuiz = () => {
   return (

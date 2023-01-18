@@ -94,3 +94,14 @@ export async function getDetailHistory(id: string, token: string) {
     token: true,
   });
 }
+
+export async function getMyQuizDetail(id: string, token: string) {
+  const url = `${ROOT_API}/${API_VERSION}/user/quiz/myquiz/${id}`;
+
+  return callAPI({
+    url,
+    serverToken: token,
+    method: 'GET',
+    token: true,
+  });
+}

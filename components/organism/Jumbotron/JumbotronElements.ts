@@ -28,6 +28,7 @@ export const JumbotronDesc = styled.p`
 `;
 
 export const JumbotronButton = styled.div`
+  width: fit-content;
   background-color: #fff;
   padding: 10px 30px;
   color: #6d67e4;
