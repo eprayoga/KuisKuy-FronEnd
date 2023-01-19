@@ -13,6 +13,12 @@ const QuizDescriptionSection = styled.section`
   gap: 20px;
   grid-template-columns: 4fr 2fr;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
 `;
 
 interface kuisDetailProps {

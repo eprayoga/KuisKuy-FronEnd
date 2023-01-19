@@ -16,6 +16,10 @@ const SignupFotoContainer = styled.section`
   justify-content: center;
   align-items: center;
   padding: 80px;
+
+  @media screen and (max-width: 768px) {
+    padding: 80px 20px;
+  }
 `;
 
 const SignupFotoSection = styled.section`

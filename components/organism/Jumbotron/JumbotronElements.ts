@@ -5,9 +5,15 @@ export const JumbotronContainer = styled.section`
   height: calc(100vh - 80px);
   padding: 0 120px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #6d67e4;
+
+  @media screen and (max-width: 768px) {
+    padding: 0px 40px;
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
 `;
 
 export const JumbotronText = styled.div`
@@ -20,11 +26,21 @@ export const JumbotronText = styled.div`
 
 export const JumbotronTitle = styled.h1`
   font-size: 64px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 40px;
+    font-weight: 700;
+  }
 `;
 
 export const JumbotronDesc = styled.p`
   font-size: 24px;
   max-width: 60%;
+
+  @media screen and (max-width: 768px) {
+    max-width: 100%;
+    font-size: 16px;
+  }
 `;
 
 export const JumbotronButton = styled.div`
@@ -40,4 +56,8 @@ export const JumbotronButton = styled.div`
 
 export const JumbotronIllustraor = styled.div`
   min-height: 50%;
+
+  @media screen and (max-width: 768px) {
+    min-height: 200px;
+  }
 `;

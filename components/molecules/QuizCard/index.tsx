@@ -13,6 +13,7 @@ import {
   Played,
   Thumbnail,
   Type,
+  UserBy,
 } from './QuizCardElements';
 
 interface QuizCardTypes {
@@ -22,9 +23,10 @@ interface QuizCardTypes {
   id: string;
   questionsTotal: Number;
   code: string;
+  user: string;
 }
 const QuizCard = (props: QuizCardTypes) => {
-  const { type, name, banner, id, questionsTotal, code } = props;
+  const { type, name, banner, id, questionsTotal, code, user } = props;
 
   return (
     <Link href={`/kuis/${id}`}>
@@ -37,6 +39,7 @@ const QuizCard = (props: QuizCardTypes) => {
           <Code>{`Kode Kuis : ${code}`}</Code>
         </div>
         <Name>{name}</Name>
+        <UserBy>Oleh : {user}</UserBy>
         <Played>Jumlah Soal : {`${questionsTotal} Soal`}</Played>
       </CardContainer>
     </Link>
@@ -56,13 +59,7 @@ export const RiwayatQuizCard = (props: RiwayatQuizCardProps) => {
   return (
     <CardContainer>
       <Thumbnail>
-        <Image
-          src={banner}
-          layout="responsive"
-          width={300}
-          height={200}
-          objectFit="cover"
-        />
+        <Image src={banner} width={300} height={200} />
       </Thumbnail>
       <PlayDate>Tanggal main : {createdAt}</PlayDate>
       <Name>{kuisName}</Name>

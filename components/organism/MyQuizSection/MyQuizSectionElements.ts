@@ -3,6 +3,11 @@ import styled from 'styled-components';
 export const MyQuizContainer = styled.section`
   margin: 40px 0;
   padding: 0 60px;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 20px;
+    padding-bottom: 80px;
+  }
 `;
 
 export const MyQuizList = styled.div`
@@ -10,6 +15,13 @@ export const MyQuizList = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
 `;
 
 export const AddButton = styled.button`

@@ -8,7 +8,7 @@ const RiwayatSection = () => {
   const [historyQuizList, SetHistoryQuizList] = useState<any>([]);
 
   const getQuizList = useCallback(async () => {
-    const data = await getHistoryQuiz();
+    const data: any = await getHistoryQuiz();
     SetHistoryQuizList(data.data.historyQuiz);
   }, [getHistoryQuiz]);
 

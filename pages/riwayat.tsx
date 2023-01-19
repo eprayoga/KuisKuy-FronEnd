@@ -1,4 +1,4 @@
-import { NavbarJoin } from '../components/organism/Navbar';
+import { NavbarJoin, NavLinkJoinMobile } from '../components/organism/Navbar';
 import ActivityBar from '../components/organism/ActivityBar';
 import RiwayatSection from '../components/organism/RiwayatSection';
 
@@ -11,6 +11,7 @@ const riwayat = () => {
         <ActivityBar active="riwayat" />
 
         <RiwayatSection />
+        <NavLinkJoinMobile active="activity" />
       </main>
     </>
   );

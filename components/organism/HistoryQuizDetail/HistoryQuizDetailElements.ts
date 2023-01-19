@@ -7,6 +7,12 @@ export const HistoryContainer = styled.section`
   gap: 20px;
   grid-template-columns: 4fr 2fr;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const MainSection = styled.div`
@@ -21,6 +27,33 @@ export const MainSection = styled.div`
     color: #ffffff;
     text-align: center;
   }
+
+  @media screen and (max-width: 768px) {
+    table {
+      overflow: scroll;
+    }
+
+    th {
+      font-size: 8px;
+    }
+
+    td,
+    span {
+      font-size: 8px;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+      color: #ffffff;
+      text-align: center;
+    }
+  }
 `;
 
 export const QuizScore = styled.div`
@@ -31,6 +64,10 @@ export const QuizScore = styled.div`
   align-items: center;
   gap: 30px;
   margin-bottom: 100px;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const Score = styled.h1`
@@ -58,12 +95,20 @@ export const Label = styled.div`
   font-weight: 400;
   font-size: 20px;
   color: #ffffff;
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const Value = styled.div`
   font-weight: 700;
   font-size: 20px;
   color: #ffffff;
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const SecondarySection = styled.div`

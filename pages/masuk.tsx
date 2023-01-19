@@ -9,6 +9,10 @@ import loginBanner from '../public/assets/img/login-banner.png';
 const LoginContianer = styled.section`
   display: grid;
   grid-template-columns: 4fr 5fr;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const BannerLogin = styled.div`
@@ -33,6 +37,10 @@ const BannerLogin = styled.div`
   p {
     width: 80%;
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const FormSide = styled.div`
@@ -42,6 +50,11 @@ const FormSide = styled.div`
   justify-content: center;
   gap: 20px;
   padding: 80px 160px;
+
+  @media screen and (max-width: 768px) {
+    padding: 80px 20px;
+    width: 100%;
+  }
 `;
 
 const Title = styled.div`

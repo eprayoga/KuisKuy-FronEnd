@@ -8,6 +8,10 @@ export const QuizDescContainer = styled.div`
   gap: 20px;
   position: sticky;
   top: 20px;
+
+  @media screen and (max-width: 768px) {
+    position: static;
+  }
 `;
 
 export const MyQuizDescContainer = styled.div`
@@ -70,4 +74,31 @@ export const RankQuizContainer = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    table {
+      overflow: scroll;
+    }
+
+    th {
+      font-size: 12px;
+    }
+
+    td,
+    span {
+      font-size: 12px;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+      color: #ffffff;
+      text-align: center;
+    }
+  }
 `;

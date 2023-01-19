@@ -44,7 +44,11 @@ export const MyQuizMateri = (props: MyQuizMateriProps) => {
       </VideoSection>
       <Description dangerouslySetInnerHTML={{ __html: description }} />
       <h1
-        style={{ marginTop: '80px', marginBottom: '20px', textAlign: 'center' }}
+        style={{
+          marginTop: '80px',
+          marginBottom: '20px',
+          textAlign: 'center',
+        }}
       >
         List Pertanyaan dan Jawaban Kuis
       </h1>

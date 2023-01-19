@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Button from '../../atoms/Button';
 import {
   BackButton,
@@ -15,8 +16,10 @@ import {
   NavbarButton,
   NavbarContainer,
   NavBrand,
+  NavItemMobile,
   NavLink,
   NavLinkContainer,
+  NavMobile,
   ProfileImage,
   QuizNavbarContainer,
   SearchButton,
@@ -46,12 +49,12 @@ const Navbar = () => {
         </Link>
       </NavLinkContainer>
       <NavbarButton>
-        <Button buttonOutline onClick={() => router.push('/join')}>
+        <Link href="/join">
           <SearchButton>
-            Cari Kuis
+            <span>Cari Kuis</span>
             <i className="fa-solid fa-magnifying-glass" />
           </SearchButton>
-        </Button>
+        </Link>
         <Button buttonOutline onClick={btnSignup}>
           Daftar
         </Button>
@@ -91,6 +94,7 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
     Cookies.remove('token');
     router.push('/join');
     setIsLogin(false);
+    toast.success('Berhasil Keluar');
   };
 
   const btnSignup = () => {
@@ -152,6 +156,29 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
         )}
       </NavbarButton>
     </NavbarContainer>
+  );
+};
+
+interface NavLinkJoinMobileProps {
+  active?: 'activity' | 'home';
+}
+export const NavLinkJoinMobile = (props: NavLinkJoinMobileProps) => {
+  const { active } = props;
+  return (
+    <NavMobile>
+      <Link href="/join">
+        <NavItemMobile isActive={active === 'home'}>
+          <i className="fa-solid fa-house" />
+          <span>Home</span>
+        </NavItemMobile>
+      </Link>
+      <Link href="/riwayat">
+        <NavItemMobile isActive={active === 'activity'}>
+          <i className="fa-solid fa-folder" />
+          <span>Aktivitas</span>
+        </NavItemMobile>
+      </Link>
+    </NavMobile>
   );
 };
 

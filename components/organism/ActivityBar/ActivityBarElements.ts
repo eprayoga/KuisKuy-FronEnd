@@ -4,6 +4,10 @@ export const ActivityBarContainer = styled.section`
   margin: 40px 60px;
   display: flex;
   gap: 15px;
+
+  @media screen and (max-width: 768px) {
+    margin: 40px 20px;
+  }
 `;
 
 interface ActivityBarItemTypes {

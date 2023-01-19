@@ -11,6 +11,12 @@ const MyQuizDescriptionSection = styled.section`
   gap: 20px;
   grid-template-columns: 5fr 3fr;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 20px;
+  }
 `;
 
 interface riwayatProps {

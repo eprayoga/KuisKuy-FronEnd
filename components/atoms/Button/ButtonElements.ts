@@ -13,6 +13,11 @@ const ButtonContainer = styled.button<ButtonContainerTyoes>`
   font-size: 20px;
   cursor: pointer;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    padding: 4px 12px;
+  }
 `;
 
 interface QuizButtonContainerTypes {

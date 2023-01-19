@@ -12,6 +12,10 @@ export const NavbarContainer = styled.nav`
   background-color: #fff;
   top: 0;
   z-index: 9;
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
 `;
 
 export const NavLinkContainer = styled.div`
@@ -28,6 +32,10 @@ export const NavBrand = styled.div`
   font-size: 36px;
   color: #6d67e4;
   font-family: 'Lato', sans-serif;
+
+  @media screen and (max-width: 768px) {
+    font-size: 28px;
+  }
 `;
 
 export const NavLink = styled.ul`
@@ -36,6 +44,10 @@ export const NavLink = styled.ul`
   margin-left: 80px;
   list-style: none;
   margin-bottom: 0px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 interface LinkItemTypes {
@@ -74,20 +86,36 @@ export const NavbarButton = styled.div`
 `;
 
 export const SearchButton = styled.div`
-  margin-right: 40px;
+  position: relative;
+  padding: 8px 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  font-weight: 400;
+  border: 3px solid #6d67e4;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6d67e4;
 
   i {
-    font-size: 18px;
+    font-size: 20px;
     margin-left: 20px;
     background-color: #6d67e4;
     color: #fff;
     position: absolute;
     width: 40px;
-    height: 34px;
+    height: 40px;
     border-radius: 5px;
     padding: 8px;
     top: 3px;
     right: 3px;
+  }
+
+  span {
+    padding-right: 40px;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -109,6 +137,10 @@ export const SearchInput = styled.div`
     padding: 8px;
     top: 6px;
     right: 6px;
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -148,12 +180,25 @@ export const BackButton = styled.div`
   i {
     font-size: 32px;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+
+    i {
+      font-size: 24px;
+    }
+  }
 `;
 
 export const Name = styled.div`
   font-weight: 500;
   font-size: 20px;
   color: #ffffff;
+
+  @media screen and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const ProfileImage = styled.div`
@@ -161,6 +206,11 @@ export const ProfileImage = styled.div`
   height: 32px;
   border-radius: 10px;
   overflow: hidden;
+
+  @media screen and (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 interface UserContainerTypes {
@@ -202,5 +252,45 @@ export const UserContainer = styled.div<UserContainerTypes>`
   .logout-btn:hover {
     background-color: #6d67e4;
     color: #fff;
+  }
+
+  @media screen and (max-width: 768px) {
+    border-radius: 15px;
+  }
+`;
+
+export const NavMobile = styled.div`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 15px 20px;
+    background-color: #6d67e4;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+`;
+
+interface NavItemMobileTypes {
+  isActive?: boolean;
+}
+export const NavItemMobile = styled.div<NavItemMobileTypes>`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  cursor: pointer;
+  color: ${(props) => (props.isActive ? '#fff' : '')};
+
+  span {
+    font-weight: ${(props) => (props.isActive ? '700' : '400')};
+  }
+
+  i {
+    font-size: 20px;
   }
 `;

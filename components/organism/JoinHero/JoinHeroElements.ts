@@ -5,6 +5,9 @@ export const JoinHeroContainer = styled.div`
   height: 300px;
   background-color: #6d67e4;
   margin-bottom: 160px;
+
+  @media screen and (max-width: 768px) {
+  }
 `;
 
 export const JoinHeroContent = styled.div`
@@ -15,17 +18,30 @@ export const JoinHeroContent = styled.div`
   justify-content: center;
   align-items: center;
   color: #fff;
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 export const Title = styled.h1`
   font-size: 36px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export const CodeInputContainer = styled.div`
   position: relative;
   margin-top: 20px;
-  height: 60px;
+  height: 50px;
   width: 400px;
+
+  @media screen and (max-width: 768px) {
+    width: 300px;
+    margin-top: 10px;
+  }
 `;
 
 export const InputCode = styled.input`
@@ -38,6 +54,10 @@ export const InputCode = styled.input`
   font-size: 22px;
   font-weight: 700;
   color: #6d67e4;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const ButtonJoin = styled.div`
@@ -55,6 +75,12 @@ export const ButtonJoin = styled.div`
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    width: 80px;
+    height: 40px;
+  }
 `;
 
 export const Wave = styled.img`

@@ -1,5 +1,5 @@
 import JoinHero from '../components/organism/JoinHero';
-import { NavbarJoin } from '../components/organism/Navbar';
+import { NavbarJoin, NavLinkJoinMobile } from '../components/organism/Navbar';
 import QuizList from '../components/organism/QuizList';
 
 const join = () => {
@@ -8,6 +8,7 @@ const join = () => {
       <NavbarJoin active="home" />
       <JoinHero />
       <QuizList />
+      <NavLinkJoinMobile active="home" />
     </>
   );
 };

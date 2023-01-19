@@ -7,6 +7,12 @@ export const PlayQuizSectionContainer = styled.section`
   gap: 20px;
   grid-template-columns: 4fr 2fr;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
 `;
 
 export const MainQuizSection = styled.div`

@@ -7,6 +7,12 @@ export const ResultQuizSectionContainer = styled.section`
   gap: 20px;
   grid-template-columns: 4fr 2fr;
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
 `;
 
 export const MainSection = styled.div`
@@ -15,11 +21,33 @@ export const MainSection = styled.div`
   padding: 30px;
   background: #2b2b2b;
 
-  h3 {
-    font-weight: 700;
-    font-size: 24px;
-    color: #ffffff;
-    text-align: center;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 768px) {
+    table {
+      overflow: scroll;
+    }
+
+    th {
+      font-size: 8px;
+    }
+
+    td,
+    span {
+      font-size: 8px;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+
+    h3 {
+      font-weight: 700;
+      font-size: 24px;
+      color: #ffffff;
+      text-align: center;
+    }
   }
 `;
 
@@ -31,6 +59,10 @@ export const QuizScore = styled.div`
   align-items: center;
   gap: 30px;
   margin-bottom: 100px;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const Score = styled.h1`

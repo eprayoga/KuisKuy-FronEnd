@@ -27,11 +27,20 @@ export const LabelImage = styled.label`
     height: 100% !important;
     object-fit: cover;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const DetailFormContainer = styled.div`
   display: flex;
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
 `;
 
 export const BannerForm = styled.div`
@@ -41,6 +50,10 @@ export const BannerForm = styled.div`
   input#avatar {
     visibility: hidden;
     height: 0px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -159,6 +172,10 @@ export const OptionItems = styled.div`
   display: flex;
   gap: 10px;
   align-items: flex-start;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const OptionCheck = styled.input``;
@@ -207,4 +224,8 @@ export const ButtonSubmit = styled.div`
   right: 60px;
   top: 20px;
   z-index: 12;
+
+  @media screen and (max-width: 768px) {
+    right: 20px;
+  }
 `;

@@ -72,11 +72,11 @@ const ResultQuizSection = (props: ResultQuizSectionProps) => {
         <h3>yeayy... Kamu telah menyelesaikan kuis !!!</h3>
         <QuizScore>
           <h3>Nilai Akhir Kamu</h3>
-          <Score>{quizResult.totalPoints}</Score>
+          <Score>{quizResult?.totalPoints}</Score>
         </QuizScore>
         <QuizScoreDesc>
           <Label>Jumlah Jawaban Benar</Label>
-          <Value>{quizResult.correctAnswer}</Value>
+          <Value>{quizResult?.correctAnswer}</Value>
         </QuizScoreDesc>
         <h2 className="text-center">Rangking Skor Kuis</h2>
         <table className="table table-responsive-xl" style={{ color: '#fff' }}>

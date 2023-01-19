@@ -26,6 +26,16 @@ export const VideoSection = styled.div`
     aspect-ratio: 16 / 9;
     border-radius: 20px;
   }
+
+  @media screen and (max-width: 768px) {
+    div {
+      height: 180px !important;
+    }
+
+    iframe {
+      height: 180px !important;
+    }
+  }
 `;
 
 export const Description = styled.div``;
@@ -48,6 +58,7 @@ export const OptionsList = styled.ul`
   flex-direction: column;
   gap: 10px;
   padding-right: 30px;
+  padding-inline: 10px;
 `;
 
 interface OptionItemTypes {

@@ -1,10 +1,12 @@
 export interface QuizItemTypes {
+  category: any;
   _id: string;
   type: string;
   kuisName: string;
   banner: string;
   code: string;
   questions: Array<any>;
+  user: any;
 }
 
 export interface LoginTypes {
