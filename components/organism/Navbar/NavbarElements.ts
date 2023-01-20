@@ -247,6 +247,10 @@ export const UserContainer = styled.div<UserContainerTypes>`
     transition: ease all 0.3s;
     color: #000;
     z-index: 9;
+
+    @media screen and (max-width: 768px) {
+      display: ${(props) => (props.dropdown ? 'block' : 'none')};
+    }
   }
 
   .logout-btn:hover {
