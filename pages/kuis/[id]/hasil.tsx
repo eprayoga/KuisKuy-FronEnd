@@ -33,30 +33,6 @@ const hasil = (props: kuisHasilProps) => {
   );
 };
 
-interface GetServerSideProps {
-  req: {
-    cookies: {
-      token: string;
-    };
-  };
-}
-
-export async function getServerSideProps({ req }: GetServerSideProps) {
-  const { token } = req.cookies;
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/masuk',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
-
 export async function getStaticPaths() {
   const data = await getAllQuiz();
   const paths = data.quiz.map((item: QuizItemTypes) => {
