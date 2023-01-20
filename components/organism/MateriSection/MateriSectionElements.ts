@@ -10,6 +10,10 @@ export const MateriSectionConteiner = styled.div`
     font-weight: 700;
     font-size: 24px;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
 `;
 
 export const VideoSection = styled.div`
@@ -38,7 +42,12 @@ export const VideoSection = styled.div`
   }
 `;
 
-export const Description = styled.div``;
+export const Description = styled.div`
+  a {
+    color: #fff !important;
+    text-decoration: underline !important;
+  }
+`;
 
 export const QuestionsSection = styled.section`
   width: 100%;

@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
   border: 0.5px solid #acacac;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     width: 160px;
@@ -17,7 +18,7 @@ export const CardContainer = styled.div`
 
 export const Thumbnail = styled.div`
   width: 100%;
-  height: 130px;
+  height: 200px;
   overflow: hidden;
   border-radius: 10px;
   margin-bottom: 5px;
@@ -29,11 +30,15 @@ export const Thumbnail = styled.div`
   img {
     object-fit: cover !important;
     width: 100% !important;
-    height: 130px !important;
+    height: 200px !important;
   }
 
   @media screen and (max-width: 768px) {
-    height: 100px;
+    height: 120px;
+
+    img {
+      height: 120px !important;
+    }
   }
 `;
 
@@ -50,7 +55,7 @@ export const Type = styled.p`
 
 export const UserBy = styled.p`
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   margin-block: 0px;
 
   @media screen and (max-width: 768px) {
@@ -97,15 +102,17 @@ export const Name = styled.h3`
 
 export const Played = styled.p`
   font-weight: 500;
-  font-size: 12px;
-  color: #8e8e8e;
+  font-size: 10px;
+  color: #fff;
   margin-top: 18px;
-
-  @media screen and (max-width: 768px) {
-    margin-top: 10px;
-    font-size: 10px;
-    margin-bottom: 0px;
-  }
+  padding: 3px 10px;
+  border-radius: 10px;
+  background-color: #6d67e4;
+  margin: 0px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-weight: 700;
 `;
 
 // Riwayat Quiz Card
@@ -136,6 +143,10 @@ export const ButtonAction = styled.div`
   width: 100%;
   margin-top: 5px;
   margin-bottom: 15px;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const EditButton = styled.button`
@@ -160,6 +171,16 @@ export const EditButton = styled.button`
 
   span {
     font-weight: 500;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 5px;
+    margin-bottom: 0;
+
+    i,
+    span {
+      font-size: 8px;
+    }
   }
 `;
 

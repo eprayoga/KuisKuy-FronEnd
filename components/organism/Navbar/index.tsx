@@ -262,7 +262,7 @@ export const QuizNavbar = (props: QuizNavbarProps) => {
 
 export const CreateQuizNav = () => {
   return (
-    <NavbarContainer>
+    <NavbarContainer style={{ position: 'fixed' }}>
       <NavLinkContainer>
         <Link href="/join">
           <a>

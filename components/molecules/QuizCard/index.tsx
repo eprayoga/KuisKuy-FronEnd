@@ -30,18 +30,20 @@ const QuizCard = (props: QuizCardTypes) => {
 
   return (
     <Link href={`/kuis/${id}`}>
-      <CardContainer>
-        <Thumbnail>
-          <Image src={banner} width={300} height={200} />
-        </Thumbnail>
-        <div className="d-flex justify-content-between align-items-center">
-          <Type>{type}</Type>
-          <Code>{`Kode Kuis : ${code}`}</Code>
-        </div>
-        <Name>{name}</Name>
-        <UserBy>Oleh : {user}</UserBy>
-        <Played>Jumlah Soal : {`${questionsTotal} Soal`}</Played>
-      </CardContainer>
+      <a>
+        <CardContainer>
+          <Thumbnail>
+            <Image src={banner} width={200} height={200} />
+          </Thumbnail>
+          <div className="d-flex justify-content-between align-items-center">
+            <Type>{type}</Type>
+            <Code>{`Kode Kuis : ${code}`}</Code>
+          </div>
+          <Played>{`${questionsTotal} Soal`}</Played>
+          <Name>{name}</Name>
+          <UserBy>Oleh : {user}</UserBy>
+        </CardContainer>
+      </a>
     </Link>
   );
 };
@@ -59,7 +61,7 @@ export const RiwayatQuizCard = (props: RiwayatQuizCardProps) => {
   return (
     <CardContainer>
       <Thumbnail>
-        <Image src={banner} width={300} height={200} />
+        <Image src={banner} width={200} height={200} />
       </Thumbnail>
       <PlayDate>Tanggal main : {createdAt}</PlayDate>
       <Name>{kuisName}</Name>
@@ -85,7 +87,7 @@ export const MyQuizCard = (props: MyQuizCardProps) => {
   return (
     <CardContainer style={{ cursor: 'auto' }}>
       <Thumbnail>
-        <Image src={banner} layout="fixed" width={300} height={130} />
+        <Image src={banner} width={200} height={200} />
       </Thumbnail>
       <div className="d-flex justify-content-between align-items-center">
         <Type>{type}</Type>

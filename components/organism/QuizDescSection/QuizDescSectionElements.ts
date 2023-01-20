@@ -28,6 +28,10 @@ export const QuizDescCard = styled.div`
   padding: 30px;
   background-color: #2b2b2b;
   border-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
 `;
 
 export const QuizImage = styled.div`
@@ -39,7 +43,7 @@ export const QuizImage = styled.div`
 
 export const QuizDetail = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
 `;
 
@@ -49,6 +53,17 @@ export const Name = styled.h1`
   font-weight: 700;
   font-size: 18px;
   margin: 0;
+
+  overflow: hidden;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 export const Other = styled.div`
@@ -76,6 +91,9 @@ export const RankQuizContainer = styled.div`
   text-align: center;
 
   @media screen and (max-width: 768px) {
+    max-height: 400px;
+    overflow: scroll;
+
     table {
       overflow: scroll;
     }
@@ -87,6 +105,17 @@ export const RankQuizContainer = styled.div`
     td,
     span {
       font-size: 12px;
+
+      .user {
+        width: fit-content;
+        text-align: left !important;
+        overflow: hidden;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
     }
 
     img {

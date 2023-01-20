@@ -67,7 +67,7 @@ const PlayQuizSection = () => {
       let point = 0;
       if (answerId === question.answer) {
         point = 100;
-        const bonus = Math.round(timeleft / 2);
+        const bonus = Math.round(timeleft / 3);
         divAnswer[answerId].classList.add('correct');
         dispatch(isCorrect());
 
@@ -77,7 +77,7 @@ const PlayQuizSection = () => {
           icon: 'success',
           color: '#fff',
           background: '#2B2B2B',
-          title: 'Yeayy!',
+          title: `Yeayy! <br/> +${point + bonus}`,
           html: `Jawabanmu benar, skor mu bertambah ${point} dan bonus waktu ${bonus} .Ini adalah soal terakhir ...`,
           timer: 2000,
           allowEscapeKey: false,
@@ -100,13 +100,13 @@ const PlayQuizSection = () => {
         divAnswer[answerId].classList.add('wrong');
 
         await sleep(1000);
-        const bonus = Math.round(timeleft / 2);
+        const bonus = Math.round(timeleft / 3);
 
         Swal.fire({
           icon: 'error',
           color: '#fff',
           background: '#2B2B2B',
-          title: 'Yahh, Jawabnmu Salah',
+          title: `Yahh, Jawabnmu Salah <br />  +${point + bonus}`,
           html: `Ini adalah soal terakhir, bonus waktu ${bonus} ...`,
           timer: 2000,
           allowEscapeKey: false,
@@ -130,7 +130,7 @@ const PlayQuizSection = () => {
       let point = 0;
       if (answerId === question.answer) {
         point = 100;
-        const bonus = Math.round(timeleft / 2);
+        const bonus = Math.round(timeleft / 3);
         divAnswer[answerId].classList.add('correct');
         dispatch(isCorrect());
 
@@ -140,7 +140,7 @@ const PlayQuizSection = () => {
           icon: 'success',
           color: '#fff',
           background: '#2B2B2B',
-          title: 'Yeayy!',
+          title: `Yeayy! <br/> +${point + bonus}`,
           html: `Jawabanmu benar skor bertambah ${point} + bonus waktu ${bonus}, bersiaplah ke pertanyaan berikutnya ...`,
           timer: 2000,
           allowEscapeKey: false,
@@ -164,13 +164,13 @@ const PlayQuizSection = () => {
         divAnswer[answerId].classList.add('wrong');
 
         await sleep(1000);
-        const bonus = Math.round(timeleft / 2);
+        const bonus = Math.round(timeleft / 3);
 
         Swal.fire({
           icon: 'error',
           color: '#fff',
           background: '#2B2B2B',
-          title: 'Yahh, Jawabnmu Salah',
+          title: `Yahh, Jawabnmu Salah <br/> +${point + bonus}`,
           html: `Yuk semangat, bonus waktu ${bonus} point perbaiki disoal berikutnya ...`,
           timer: 2000,
           allowEscapeKey: false,
@@ -219,7 +219,7 @@ const PlayQuizSection = () => {
         icon: 'error',
         color: '#fff',
         background: '#2B2B2B',
-        title: 'Waktu habis!',
+        title: `Waktu habis! <br/>  +${point}`,
         html: 'Kamu tidak menjawab pertanyaan, skormu tidak bertambah',
         timer: 2000,
         allowEscapeKey: false,

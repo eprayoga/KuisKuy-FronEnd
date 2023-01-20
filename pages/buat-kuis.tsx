@@ -5,6 +5,7 @@ import { CreateQuizNav } from '../components/organism/Navbar';
 
 const CreateQuiz = styled.section`
   padding: 60px 300px;
+  margin-top: 80px;
 
   @media screen and (max-width: 768px) {
     padding: 30px 20px;

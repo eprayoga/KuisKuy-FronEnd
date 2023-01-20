@@ -10,7 +10,7 @@ export const PlayQuizSectionContainer = styled.section`
 
   @media screen and (max-width: 768px) {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 20px;
   }
 `;
@@ -20,6 +20,10 @@ export const MainQuizSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 60px;
+  }
 `;
 
 export const QuestionSection = styled.div`
@@ -44,9 +48,11 @@ export const AnswerSection = styled.div`
 `;
 
 export const AnswerItem = styled.div`
-  width: 100%;
+  max-width: 100%;
   min-height: 150px;
+  word-wrap: normal;
   padding: 20px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,6 +63,7 @@ export const AnswerItem = styled.div`
   font-size: 16px;
   cursor: pointer;
   transition: ease all 0.3s;
+  border: 3px solid #2b2b2b;
 
   p {
     margin: 0;
@@ -67,15 +74,23 @@ export const AnswerItem = styled.div`
   }
 
   &.correct {
-    background-color: #019267;
+    background-color: #019267 !important;
   }
 
   &.actual-answer {
-    border: 3px solid #019267;
+    border: 3px solid #019267 !important;
   }
 
   &.wrong {
-    border: 3px solid #ff0000;
+    border: 3px solid #ff0000 !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 10px;
+
+    &:hover {
+      border: 3px solid #2b2b2b;
+    }
   }
 `;
 
@@ -84,6 +99,14 @@ export const SecondaryQuizSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 40px);
+    position: absolute;
+    top: 0px;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 export const ScoreSection = styled.div`
@@ -99,12 +122,28 @@ export const ScoreSection = styled.div`
 
     color: #ffffff;
   }
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+
+    span {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const Score = styled.h1`
   font-weight: 700;
   font-size: 64px;
   color: #6d67e4;
+
+  @media screen and (max-width: 768px) {
+    font-size: 24px;
+    margin: 0;
+  }
 `;
 
 export const TimeBar = styled.progress`
@@ -116,13 +155,12 @@ export const TimeBar = styled.progress`
   background-color: #2b2b2b;
 
   &::-webkit-progress-bar {
-    background-color: #019267;
+    background-color: #2b2b2b;
     border-radius: 10px;
   }
   &::-webkit-progress-value {
     background-color: #019267;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px 3px rgba(255, 0, 0, 0.8);
   }
   &::-moz-progress-bar {
     background-color: #019267;

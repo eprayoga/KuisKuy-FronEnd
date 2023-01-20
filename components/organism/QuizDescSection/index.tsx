@@ -384,9 +384,7 @@ export const MyQuizDesc = (props: MyQuizDescProps) => {
                       height={20}
                       style={{ borderRadius: '50%', objectFit: 'cover' }}
                     />
-                    <div className="pl-3 email">
-                      <span>{item.user.username}</span>
-                    </div>
+                    <div className="text-left user">{item.user.username}</div>
                   </td>
                   <td className="text-center">{toDate(item.createdAt)}</td>
                   <td className="status">
