@@ -49,7 +49,7 @@ export const InputCode = styled.input`
   height: 100%;
   border: none;
   outline: none;
-  padding: 10px 20px;
+  padding: 30px 20px;
   border-radius: 20px;
   font-size: 22px;
   font-weight: 700;
@@ -57,6 +57,7 @@ export const InputCode = styled.input`
 
   @media screen and (max-width: 768px) {
     font-size: 16px;
+    padding: 10px 20px;
   }
 `;
 
