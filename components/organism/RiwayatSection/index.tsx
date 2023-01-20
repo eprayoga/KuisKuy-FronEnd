@@ -52,15 +52,16 @@ const RiwayatSection = () => {
       {isLoading ? (
         <QuizCardSkeleton />
       ) : (
-        <RiwayatList>
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        <>
           {historyQuizList.length < 1 ? (
-            <div className="text-center d-flex justify-content-center flex-column align-items-center gap-3">
+            <div className="w-100 text-center">
               <div className="text-center">
                 Kamu Belum Melakukan Kuis Satu Kalipun
               </div>
             </div>
           ) : (
-            <>
+            <RiwayatList>
               {historyQuizList.map((item: any) => (
                 <Link href={`/kuis/riwayat/${item._id}`}>
                   <a>
@@ -74,9 +75,9 @@ const RiwayatSection = () => {
                   </a>
                 </Link>
               ))}
-            </>
+            </RiwayatList>
           )}
-        </RiwayatList>
+        </>
       )}
     </RiwayatContainer>
   );

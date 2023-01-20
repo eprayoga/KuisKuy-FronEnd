@@ -7,6 +7,7 @@ export const ActivityBarContainer = styled.section`
 
   @media screen and (max-width: 768px) {
     margin: 40px 20px;
+    margin-top: 120px;
   }
 `;
 

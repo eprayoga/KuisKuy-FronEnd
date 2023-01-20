@@ -11,6 +11,7 @@ export const JumbotronContainer = styled.section`
 
   @media screen and (max-width: 768px) {
     padding: 0px 40px;
+    margin-top: 80px;
     flex-direction: column-reverse;
     gap: 30px;
   }

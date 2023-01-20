@@ -15,6 +15,13 @@ export const NavbarContainer = styled.nav`
 
   @media screen and (max-width: 768px) {
     padding: 15px;
+    position: fixed;
+  }
+`;
+
+export const NavSpace = styled.div`
+  @media screen and (max-width: 768px) {
+    margin-bottom: 80px;
   }
 `;
 

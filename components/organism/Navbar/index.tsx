@@ -20,6 +20,7 @@ import {
   NavLink,
   NavLinkContainer,
   NavMobile,
+  NavSpace,
   ProfileImage,
   QuizNavbarContainer,
   SearchButton,
@@ -106,56 +107,59 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
   };
 
   return (
-    <NavbarContainer>
-      <NavLinkContainer>
-        <Link href="/join">
-          <a>
-            <NavBrand>KuisKuy</NavBrand>
-          </a>
-        </Link>
-        <NavLink>
-          <LinkItem isActive={active === 'home'}>
-            <Link href="/join">Beranda</Link>
-          </LinkItem>
-          <LinkItem isActive={active === 'activity'}>
-            <Link href={isLogin ? '/riwayat' : '/masuk'}>Aktivitas</Link>
-          </LinkItem>
-        </NavLink>
-      </NavLinkContainer>
-      <NavbarButton>
-        <SearchInput>
-          <FormInput type="text" placeholder="Cari kuis ..." />
-          <i className="fa-solid fa-magnifying-glass" />
-        </SearchInput>
-        {isLogin ? (
-          <UserContainer
-            home
-            dropdown={dropdown}
-            onClick={() => setDropdown(!dropdown)}
-          >
-            <Name>{user.name}</Name>
-            <ProfileImage>
-              <Image
-                src={user.profile_photo}
-                width={32}
-                height={32}
-                objectFit="cover"
-              />
-            </ProfileImage>
-            <div className="logout-btn" onClick={onLogout}>
-              Keluar
-            </div>
-          </UserContainer>
-        ) : (
-          <>
-            <Button buttonOutline onClick={btnSignup}>
-              Daftar
-            </Button>
-            <Button onClick={btnLogin}>Masuk</Button>
-          </>
-        )}
-      </NavbarButton>
-    </NavbarContainer>
+    <>
+      <NavbarContainer>
+        <NavLinkContainer>
+          <Link href="/join">
+            <a>
+              <NavBrand>KuisKuy</NavBrand>
+            </a>
+          </Link>
+          <NavLink>
+            <LinkItem isActive={active === 'home'}>
+              <Link href="/join">Beranda</Link>
+            </LinkItem>
+            <LinkItem isActive={active === 'activity'}>
+              <Link href={isLogin ? '/riwayat' : '/masuk'}>Aktivitas</Link>
+            </LinkItem>
+          </NavLink>
+        </NavLinkContainer>
+        <NavbarButton>
+          <SearchInput>
+            <FormInput type="text" placeholder="Cari kuis ..." />
+            <i className="fa-solid fa-magnifying-glass" />
+          </SearchInput>
+          {isLogin ? (
+            <UserContainer
+              home
+              dropdown={dropdown}
+              onClick={() => setDropdown(!dropdown)}
+            >
+              <Name>{user.name}</Name>
+              <ProfileImage>
+                <Image
+                  src={user.profile_photo}
+                  width={32}
+                  height={32}
+                  objectFit="cover"
+                />
+              </ProfileImage>
+              <div className="logout-btn" onClick={onLogout}>
+                Keluar
+              </div>
+            </UserContainer>
+          ) : (
+            <>
+              <Button buttonOutline onClick={btnSignup}>
+                Daftar
+              </Button>
+              <Button onClick={btnLogin}>Masuk</Button>
+            </>
+          )}
+        </NavbarButton>
+      </NavbarContainer>
+      <NavSpace />
+    </>
   );
 };
 
