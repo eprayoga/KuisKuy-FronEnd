@@ -15,6 +15,7 @@ export const NavbarContainer = styled.nav`
 
   @media screen and (max-width: 768px) {
     padding: 15px;
+    overflow-x: hidden;
   }
 `;
 
