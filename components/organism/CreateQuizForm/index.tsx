@@ -299,7 +299,7 @@ const CreateQuizForm = () => {
                 <OptionItems>
                   <OptionCheck
                     type="radio"
-                    name="option"
+                    name={`option-${index}-0`}
                     onClick={() => updateAnswerId(index, 0)}
                   />
                   <Option>
@@ -315,7 +315,7 @@ const CreateQuizForm = () => {
                 <OptionItems>
                   <OptionCheck
                     type="radio"
-                    name="option"
+                    name={`option-${index}`}
                     onClick={() => updateAnswerId(index, 1)}
                   />
                   <Option>
@@ -331,7 +331,7 @@ const CreateQuizForm = () => {
                 <OptionItems>
                   <OptionCheck
                     type="radio"
-                    name="option"
+                    name={`option-${index}`}
                     onClick={() => updateAnswerId(index, 2)}
                   />
                   <Option>
@@ -347,7 +347,7 @@ const CreateQuizForm = () => {
                 <OptionItems>
                   <OptionCheck
                     type="radio"
-                    name="option"
+                    name={`option-${index}`}
                     onClick={() => updateAnswerId(index, 3)}
                   />
                   <Option>
