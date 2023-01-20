@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -65,27 +66,37 @@ const Title = styled.div`
 
 const masuk = () => {
   return (
-    <LoginContianer>
-      <BannerLogin>
-        <Image src={loginBanner} width={502} height={391} />
-        <h1>Mulai Kuis dan jadilah yang Terbaik</h1>
-        <p>
-          Kami menyediakan berbagai kuis untuk membantu anda menambah wawasan
-        </p>
-      </BannerLogin>
-      <FormSide>
-        <Link href="/join">
-          <a style={{ cursor: 'pointer' }}>
-            <Image src={logo} width={60} height={60} layout="fixed" />
-          </a>
-        </Link>
-        <Title>
-          <h1>Masuk</h1>
-          <p>Masuk untuk melakukan kuis</p>
-        </Title>
-        <LoginForm />
-      </FormSide>
-    </LoginContianer>
+    <>
+      <Head>
+        <title>Masuk | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <LoginContianer>
+        <BannerLogin>
+          <Image src={loginBanner} width={502} height={391} />
+          <h1>Mulai Kuis dan jadilah yang Terbaik</h1>
+          <p>
+            Kami menyediakan berbagai kuis untuk membantu anda menambah wawasan
+          </p>
+        </BannerLogin>
+        <FormSide>
+          <Link href="/join">
+            <a style={{ cursor: 'pointer' }}>
+              <Image src={logo} width={60} height={60} layout="fixed" />
+            </a>
+          </Link>
+          <Title>
+            <h1>Masuk</h1>
+            <p>Masuk untuk melakukan kuis</p>
+          </Title>
+          <LoginForm />
+        </FormSide>
+      </LoginContianer>
+    </>
   );
 };
 

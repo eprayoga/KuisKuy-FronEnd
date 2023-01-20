@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import styled from 'styled-components';
 import { MyQuizMateri } from '../../components/organism/MateriSection';
 import { MyQuizDesc } from '../../components/organism/QuizDescSection';
@@ -26,16 +27,27 @@ const quizDetail = (props: riwayatProps) => {
   const { data } = props;
 
   return (
-    <QuizLayout backLink="/kuis-saya">
-      <MyQuizDescriptionSection>
-        <MyQuizMateri
-          description={data.myQuiz.description}
-          questions={data.myQuiz.questions}
-          referenceLink={data.myQuiz.reference_link}
+    <>
+      <Head>
+        <title>Riwayat Kuis | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
         />
-        <MyQuizDesc data={data} />
-      </MyQuizDescriptionSection>
-    </QuizLayout>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <QuizLayout backLink="/kuis-saya">
+        <MyQuizDescriptionSection>
+          <MyQuizMateri
+            description={data.myQuiz.description}
+            questions={data.myQuiz.questions}
+            referenceLink={data.myQuiz.reference_link}
+          />
+          <MyQuizDesc data={data} />
+        </MyQuizDescriptionSection>
+      </QuizLayout>
+    </>
   );
 };
 
@@ -56,7 +68,7 @@ export async function getServerSideProps({ req, params }: GetServerSideProps) {
   if (!token) {
     return {
       redirect: {
-        destination: '/sign-in',
+        destination: '/masuk',
         permanent: false,
       },
     };

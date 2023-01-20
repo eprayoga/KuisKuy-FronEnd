@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import Cookies from 'js-cookie';
+import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
@@ -175,67 +176,78 @@ const DaftarFoto = () => {
   };
 
   return (
-    <SignupFotoContainer>
-      <SignupFotoSection>
-        <LabelImage htmlFor="avatar">
-          {imagePreview ? (
-            <Image src={imagePreview} alt="" width={100} height={100} />
-          ) : (
-            <img src="/assets/img/upload.png" alt="" />
-          )}
-        </LabelImage>
-        <input
-          id="avatar"
-          type="file"
-          name="avatar"
-          accept="image/png, image/jpeg"
-          onChange={(event) => {
-            const img = event.target.files![0];
-            setImagePreview(URL.createObjectURL(img));
-            return setImage(img);
-          }}
+    <>
+      <Head>
+        <title>Daftar Foto | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
         />
-        <Profile>
-          <h1>{localForm.name}</h1>
-          <p>{localForm.email}</p>
-        </Profile>
-        <FormInput>
-          <LabelForm>Kategori Kuis Favorit</LabelForm>
-          <CategorySelect
-            id="category"
-            name="category"
-            aria-label="Favorite Game"
-            value={favorite}
-            onChange={(event) => setFavorite(event.target.value)}
-          >
-            {categories.map((category: CategoryTypes) => (
-              <option key={category._id} value={category._id} selected>
-                {category.name}
-              </option>
-            ))}
-          </CategorySelect>
-        </FormInput>
-        <FormButton onClick={onSubmit}>Buat Akun Saya</FormButton>
-      </SignupFotoSection>
-      {uploaded > 0 && (
-        <div className="progress fixed-top">
-          <div
-            className={
-              uploaded === 100
-                ? 'progress-bar progress-bar-striped progress-bar-animated bg-success'
-                : 'progress-bar progress-bar-striped progress-bar-animated'
-            }
-            role="progressbar"
-            style={{ width: `${uploaded}%` }}
-            aria-valuenow={uploaded}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          >
-            {uploaded}%
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <SignupFotoContainer>
+        <SignupFotoSection>
+          <LabelImage htmlFor="avatar">
+            {imagePreview ? (
+              <Image src={imagePreview} alt="" width={100} height={100} />
+            ) : (
+              <img src="/assets/img/upload.png" alt="" />
+            )}
+          </LabelImage>
+          <input
+            id="avatar"
+            type="file"
+            name="avatar"
+            accept="image/png, image/jpeg"
+            onChange={(event) => {
+              const img = event.target.files![0];
+              setImagePreview(URL.createObjectURL(img));
+              return setImage(img);
+            }}
+          />
+          <Profile>
+            <h1>{localForm.name}</h1>
+            <p>{localForm.email}</p>
+          </Profile>
+          <FormInput>
+            <LabelForm>Kategori Kuis Favorit</LabelForm>
+            <CategorySelect
+              id="category"
+              name="category"
+              aria-label="Favorite Game"
+              value={favorite}
+              onChange={(event) => setFavorite(event.target.value)}
+            >
+              {categories.map((category: CategoryTypes) => (
+                <option key={category._id} value={category._id} selected>
+                  {category.name}
+                </option>
+              ))}
+            </CategorySelect>
+          </FormInput>
+          <FormButton onClick={onSubmit}>Buat Akun Saya</FormButton>
+        </SignupFotoSection>
+        {uploaded > 0 && (
+          <div className="progress fixed-top">
+            <div
+              className={
+                uploaded === 100
+                  ? 'progress-bar progress-bar-striped progress-bar-animated bg-success'
+                  : 'progress-bar progress-bar-striped progress-bar-animated'
+              }
+              role="progressbar"
+              style={{ width: `${uploaded}%` }}
+              aria-valuenow={uploaded}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              {uploaded}%
+            </div>
           </div>
-        </div>
-      )}
-    </SignupFotoContainer>
+        )}
+      </SignupFotoContainer>
+    </>
   );
 };
 

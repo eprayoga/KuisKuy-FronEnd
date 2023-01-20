@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useDispatch } from 'react-redux';
 import ResultQuizSection from '../../../components/organism/ResultQuizSection';
 import QuizLayout from '../../../layouts/QuizLayout';
@@ -15,11 +16,46 @@ const hasil = (props: kuisHasilProps) => {
   dispatch(resetAllAction());
 
   return (
-    <QuizLayout backLink={`/kuis/${data.quiz._id}`}>
-      <ResultQuizSection quizId={data.quiz._id} />
-    </QuizLayout>
+    <>
+      <Head>
+        <title>Hasil Kuis | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <QuizLayout backLink={`/kuis/${data.quiz._id}`}>
+        <ResultQuizSection quizId={data.quiz._id} />
+      </QuizLayout>
+    </>
   );
 };
+
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
+}
+
+export async function getServerSideProps({ req }: GetServerSideProps) {
+  const { token } = req.cookies;
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/masuk',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export async function getStaticPaths() {
   const data = await getAllQuiz();

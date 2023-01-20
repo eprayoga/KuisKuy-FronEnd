@@ -32,7 +32,7 @@ export async function getServerSideProps({ req, params }: GetServerSideProps) {
   if (!token) {
     return {
       redirect: {
-        destination: '/sign-in',
+        destination: '/masuk',
         permanent: false,
       },
     };

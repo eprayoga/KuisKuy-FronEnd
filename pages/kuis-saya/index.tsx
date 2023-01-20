@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import ActivityBar from '../../components/organism/ActivityBar';
 import MyQuizSection from '../../components/organism/MyQuizSection';
 import {
@@ -8,6 +9,15 @@ import {
 const MyQuiz = () => {
   return (
     <>
+      <Head>
+        <title>Kuis Saya | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <NavbarJoin active="activity" />
 
       <main>
@@ -19,5 +29,29 @@ const MyQuiz = () => {
     </>
   );
 };
+
+interface GetServerSideProps {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
+}
+
+export async function getServerSideProps({ req }: GetServerSideProps) {
+  const { token } = req.cookies;
+  if (!token) {
+    return {
+      redirect: {
+        destination: '/masuk',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 export default MyQuiz;

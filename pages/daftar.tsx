@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -35,20 +36,31 @@ const Title = styled.div`
 
 const daftar = () => {
   return (
-    <SignupContainer>
-      <SignupSection>
-        <Link href="/join">
-          <a style={{ cursor: 'pointer' }}>
-            <Image src={logo} width={60} height={60} layout="fixed" />
-          </a>
-        </Link>
-        <Title>
-          <h1>Daftar</h1>
-          <p>Daftar dan bergabung dengan kami</p>
-        </Title>
-        <SignupForm />
-      </SignupSection>
-    </SignupContainer>
+    <>
+      <Head>
+        <title>Daftar | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <SignupContainer>
+        <SignupSection>
+          <Link href="/join">
+            <a style={{ cursor: 'pointer' }}>
+              <Image src={logo} width={60} height={60} layout="fixed" />
+            </a>
+          </Link>
+          <Title>
+            <h1>Daftar</h1>
+            <p>Daftar dan bergabung dengan kami</p>
+          </Title>
+          <SignupForm />
+        </SignupSection>
+      </SignupContainer>
+    </>
   );
 };
 

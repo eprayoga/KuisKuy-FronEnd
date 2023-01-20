@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MateriSection from '../../../components/organism/MateriSection';
@@ -36,15 +37,26 @@ const kuis = (props: kuisDetailProps) => {
   }, [data]);
 
   return (
-    <QuizLayout backLink="/join">
-      <QuizDescriptionSection>
-        <MateriSection
-          description={quizData.description}
-          referenceLink={quizData.reference_link}
+    <>
+      <Head>
+        <title>Detail Kuis | KuisKuy</title>
+        <meta
+          name="description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
         />
-        <QuizDescSection data={data.quiz} />
-      </QuizDescriptionSection>
-    </QuizLayout>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <QuizLayout backLink="/join">
+        <QuizDescriptionSection>
+          <MateriSection
+            description={quizData.description}
+            referenceLink={quizData.reference_link}
+          />
+          <QuizDescSection data={data.quiz} />
+        </QuizDescriptionSection>
+      </QuizLayout>
+    </>
   );
 };
 
