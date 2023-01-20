@@ -15,6 +15,10 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Poppins', sans-serif;
         color: #0C145A;
         overflow-x: hidden;
+
+        @media screen and (max-width: 768px) {
+            overflow-x: hidden;
+        }
     }
 
     a {
