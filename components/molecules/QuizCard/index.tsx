@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
+import Skeleton from 'react-loading-skeleton';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -105,6 +106,36 @@ export const MyQuizCard = (props: MyQuizCardProps) => {
         </Link>
       </ButtonAction>
     </CardContainer>
+  );
+};
+
+export const QuizCardSkeleton = () => {
+  const i = [1, 2, 3, 4, 5];
+
+  return (
+    <div className="d-flex gap-4">
+      {i.map((l) => (
+        <CardContainer key={l}>
+          <Thumbnail>
+            <Skeleton width={200} height={200} />
+          </Thumbnail>
+          <PlayDate>
+            {' '}
+            <Skeleton />{' '}
+          </PlayDate>
+          <Name>
+            {' '}
+            <Skeleton />
+          </Name>
+          <Code>
+            <Skeleton />
+          </Code>
+          <Acuration>
+            <Skeleton />
+          </Acuration>
+        </CardContainer>
+      ))}
+    </div>
   );
 };
 

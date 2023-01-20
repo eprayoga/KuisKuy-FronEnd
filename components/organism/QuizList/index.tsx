@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { QuizItemTypes } from '../../../services/data-types';
 import { getAllQuiz, getQuizCategory } from '../../../services/user';
-import QuizCard from '../../molecules/QuizCard';
+import QuizCard, { QuizCardSkeleton } from '../../molecules/QuizCard';
 import { CardList, CategoryTitle, QuizListContainer } from './QuizListElements';
 
 const QuizList = () => {
+  const [isLoading, setIsloading] = useState(true);
   const [quizList, setQuizList] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -15,6 +16,9 @@ const QuizList = () => {
     const categoryResponse = await getQuizCategory();
     setCategories(categoryResponse);
     setQuizList(data.quiz);
+    if (data) {
+      setIsloading(false);
+    }
   }, [getAllQuiz]);
 
   useEffect(() => {
@@ -34,35 +38,41 @@ const QuizList = () => {
 
   return (
     <QuizListContainer>
-      {categories.map((category: any) => (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
+      {isLoading ? (
+        <QuizCardSkeleton />
+      ) : (
         <>
-          {listCategory.includes(category._id) && (
+          {categories.map((category: any) => (
+            // eslint-disable-next-line react/jsx-no-useless-fragment
             <>
-              <CategoryTitle>{category.name}</CategoryTitle>
-              <CardList>
-                {quizList.map((item: QuizItemTypes) => (
-                  // eslint-disable-next-line react/jsx-no-useless-fragment
-                  <>
-                    {category._id === item.category._id && (
-                      <QuizCard
-                        key={item._id}
-                        id={item._id}
-                        name={item.kuisName}
-                        banner={`${API_IMG}/${item.banner}`}
-                        type={item.type}
-                        questionsTotal={item.questions.length}
-                        code={item.code}
-                        user={item.user.name}
-                      />
-                    )}
-                  </>
-                ))}
-              </CardList>
+              {listCategory.includes(category._id) && (
+                <>
+                  <CategoryTitle>{category.name}</CategoryTitle>
+                  <CardList>
+                    {quizList.map((item: QuizItemTypes) => (
+                      // eslint-disable-next-line react/jsx-no-useless-fragment
+                      <>
+                        {category._id === item.category._id && (
+                          <QuizCard
+                            key={item._id}
+                            id={item._id}
+                            name={item.kuisName}
+                            banner={`${API_IMG}/${item.banner}`}
+                            type={item.type}
+                            questionsTotal={item.questions.length}
+                            code={item.code}
+                            user={item.user.name}
+                          />
+                        )}
+                      </>
+                    ))}
+                  </CardList>
+                </>
+              )}
             </>
-          )}
+          ))}
         </>
-      ))}
+      )}
     </QuizListContainer>
   );
 };

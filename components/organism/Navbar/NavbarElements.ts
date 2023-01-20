@@ -276,6 +276,7 @@ export const NavMobile = styled.div`
     background-color: #6d67e4;
     justify-content: space-evenly;
     align-items: center;
+    z-index: 9;
   }
 `;
 
