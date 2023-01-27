@@ -40,6 +40,7 @@ export async function getStaticPaths() {
       params: {
         id: item._id,
       },
+      revalidate: 60,
     };
   });
   return {

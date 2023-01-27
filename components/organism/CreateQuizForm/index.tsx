@@ -151,29 +151,33 @@ const CreateQuizForm = () => {
   };
 
   const onSubmit = async () => {
-    const uploadInterval = setInterval(() => {
-      const uploadedProgress = localStorage.getItem('upload-progress');
-      setUploaded(parseInt(uploadedProgress!, 10));
-    }, 500);
-    const data = new FormData();
-
-    data.append('banner', image);
-    data.append('code', `${code}`);
-    data.append('kuisName', name);
-    data.append('category', category);
-    data.append('reference_link', referenceLink);
-    data.append('description', description);
-    data.append('type', 'multiple choice');
-    data.append('questions', JSON.stringify(question));
-
-    const result = await createQuiz(data);
-    if (result.error) {
-      clearInterval(uploadInterval);
-      toast.error(result?.message);
+    if (name === '' || image === '' || category === '' || question === '') {
+      toast.error('Silahkan semua data!!');
     } else {
-      clearInterval(uploadInterval);
-      toast.success('Berhasil Membuat Kuis');
-      router.push('kuis-saya');
+      const uploadInterval = setInterval(() => {
+        const uploadedProgress = localStorage.getItem('upload-progress');
+        setUploaded(parseInt(uploadedProgress!, 10));
+      }, 500);
+      const data = new FormData();
+
+      data.append('banner', image);
+      data.append('code', `${code}`);
+      data.append('kuisName', name);
+      data.append('category', category);
+      data.append('reference_link', referenceLink);
+      data.append('description', description);
+      data.append('type', 'multiple choice');
+      data.append('questions', JSON.stringify(question));
+
+      const result = await createQuiz(data);
+      if (result.error) {
+        clearInterval(uploadInterval);
+        toast.error(result?.message);
+      } else {
+        clearInterval(uploadInterval);
+        toast.success('Berhasil Membuat Kuis');
+        router.push('kuis-saya');
+      }
     }
   };
 
