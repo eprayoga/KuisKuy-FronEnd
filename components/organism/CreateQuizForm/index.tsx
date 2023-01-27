@@ -303,8 +303,9 @@ const CreateQuizForm = () => {
                 <OptionItems>
                   <OptionCheck
                     type="radio"
-                    name={`option-${index}-0`}
+                    name={`option-${index}`}
                     onClick={() => updateAnswerId(index, 0)}
+                    checked
                   />
                   <Option>
                     <ReactQuill
