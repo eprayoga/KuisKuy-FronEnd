@@ -69,7 +69,6 @@ export async function getStaticPaths() {
       params: {
         id: item._id,
       },
-      revalidate: 60,
     };
   });
   return {
@@ -91,5 +90,6 @@ export async function getStaticProps({ params }: GetStaticProps) {
     props: {
       data,
     },
+    revalidate: 60,
   };
 }
