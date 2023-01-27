@@ -54,7 +54,7 @@ const LoginForm = () => {
         <Input
           placeholder="Masukkan Email"
           name="email"
-          type="text"
+          type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
