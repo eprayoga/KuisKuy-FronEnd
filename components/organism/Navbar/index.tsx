@@ -84,8 +84,8 @@ export const NavbarJoin = (props: NavbarJoinProps) => {
       const payload: JWTPayloadTypes = jwtDecode(jwtToken);
       const userFromPayload: UserTypes = payload.user;
       const IMG = process.env.NEXT_PUBLIC_IMG;
-      user.profile_photo = `${IMG}/${userFromPayload.profile_photo}`;
-      user.name = userFromPayload.name;
+      user.profile_photo = `${IMG}/${userFromPayload?.profile_photo}`;
+      user.name = userFromPayload?.name;
       setIsLogin(true);
       setUser(user);
     }
