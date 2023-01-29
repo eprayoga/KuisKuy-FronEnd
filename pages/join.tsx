@@ -13,6 +13,17 @@ const join = () => {
           content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
         />
         <link rel="icon" href="/favicon.ico" />
+
+        <meta property="og:title" content="Kuis Kuy App" />
+        <meta
+          property="og:description"
+          content="Tingkatkan ilmu dengan metode kuis yang menyenangkan dari KuisKuy."
+        />
+        <meta
+          property="og:image"
+          content="https://kuiskuy.vercel.app/_next/static/media/logo-kuiskuy.53d722fd.svg"
+        />
+        <meta property="og:url" content="https://kuiskuy.vercel.app/" />
       </Head>
 
       <NavbarJoin active="home" />
